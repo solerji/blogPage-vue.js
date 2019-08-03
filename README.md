@@ -25,15 +25,15 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## 相关技术及用到的库和插件
 前端部分：
-vue.js
-mavon-editor
-animate.css
-vue-particle-line
+vue.js、
+mavon-editor、
+animate.css、
+vue-particle-line、
 
 后台部分：
-node.js
-express
-mogodb
+node.js、
+express、
+mogodb、
 mongoose
 
 
