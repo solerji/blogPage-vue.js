@@ -1,4 +1,4 @@
-# blogdemoadmin
+# blogAdmin
 
 > A Vue.js project
 
@@ -19,3 +19,23 @@ npm run build --report
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## 内容说明
+本项目为个人博客的前端页面部分，开发模块分为管理平台和博客展示页面两部分。该项目涉及的后台部分代码在 https://github.com/solerji/solerji-blogDemo-node.js ,开发ing，开发进度可查看Update log。
+
+## 相关技术及用到的库和插件
+前端部分：
+vue.js、
+mavon-editor、
+animate.css、
+vue-particle-line、
+
+后台部分：
+node.js、
+express、
+mogodb、
+mongoose
+
+
+## Update log
+2019-08-02 update firstPage Style, divide models
