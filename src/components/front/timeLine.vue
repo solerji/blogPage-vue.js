@@ -4,21 +4,13 @@
       <div class="timeLineMain">
         <!-- 文章统计 -->
         <div class="articleNumber">
-        共计2篇文章，还会不断耕耘呢！
+        共计{{ pageCount }}篇文章，还会不断耕耘呢！
         </div>
         <div class="timelineGroup">
           <Timeline>
-          <TimelineItem>
-            <p class="time">2012年</p>
-            <p class="content">第一篇文章</p>
-          </TimelineItem>
-          <TimelineItem>
-            <p class="time">2013年</p>
-            <p class="content">第二篇文章</p>
-          </TimelineItem>
-          <TimelineItem>
-            <p class="time">2015年</p>
-            <p class="content">第三篇文章</p>
+          <TimelineItem v-for="(item,index) in arrTimeLine" :key="item" :index="index" :color="red" >
+            <p class="time" >{{ item.time }}</p>
+            <p class="content">{{ item.content }}</p>
           </TimelineItem>
           </Timeline>
         </div>
@@ -30,7 +22,21 @@ export default {
     name: 'timeLine',
     data(){
       return{
-
+        arrTimeLine: [
+          {
+            time: '2018年',
+            content: '我写了第一篇博客',
+          },
+           {
+            time: '2019年',
+            content: '我写了第二篇博客',
+          },
+          {
+            time: '2019年',
+            content: '我写了第三篇博客',
+          }
+        ],
+        pageCount: '5'
       }
     }
 }

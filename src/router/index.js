@@ -1,39 +1,74 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import firstPage from '@/page/front/firstPage'
-import blogPage from '@/page/front/blogPage'
-import classPage from '@/page/front/classPage'
-import introduction from '@/page/front/introduction'
-import contentPage from '@/page/front/contentPage'
 
 Vue.use(Router)
+
 export default new Router({
-  mode: 'history',
-  routes: [
-    {
-      path: '/',
-      name: 'firstPage',
-      component: firstPage
-    },
-    {
-      path: '/blogPage',
-      name: 'blogPage',
-      component: blogPage
-    },
-    {
-      path: '/classPage',
-      name: 'classPage',
-      component: classPage
-    },
-    {
-      path: '/introduction',
-      name: 'introduction',
-      component: introduction
-    },
-    {
-      path: '/contentPage',
-      name: 'contentPaget',
-      component: contentPage
-    }
-  ]
+  mode: 'history', 
+  routes:[
+      {
+       path: '/',
+       name: 'firstPage',
+       component: resolve =>
+       require([
+         '@/page/front/firstPage.vue'
+       ], resolve)
+      },
+      {
+        path: '/blogPage',
+        name: 'blogPage',
+        component: resolve =>
+        require([
+          '@/page/front/blogPage.vue'
+        ], resolve)
+      },
+      {
+        path: '/classPage',
+        name: 'classPage',
+        component: resolve =>
+        require([
+          '@/page/front/classPage.vue'
+        ], resolve)
+      },
+      {
+        path: '/introduction',
+        name: 'introduction',
+        component: resolve =>
+        require([
+          '@/page/front/introduction.vue'
+        ], resolve)
+      },
+      {
+        path: '/contentPage',
+        name: 'contentPage',
+        component: resolve =>
+        require([
+          '@/page/front/contentPage.vue'
+        ], resolve)
+      },
+      {
+        path: '/login',
+        name: 'login',
+        component: resolve =>
+        require([
+          '@/page/back/login.vue'
+        ], resolve)
+      },
+      {
+        path: '/index',
+        name: 'index',
+        component: resolve =>
+        require([
+          '@/page/back/index.vue'
+        ], resolve),
+      },
+      {
+        path: '/editArticle',
+        name: 'editArticle',
+        component: resolve =>
+        require([
+          '@/page/back/editArticle.vue'
+        ], resolve)
+      }
+   ]
 })

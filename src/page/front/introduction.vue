@@ -7,6 +7,10 @@
          <p>个人介绍</p>
         </div>
         <Divider class="headDivider" orientation="left">个人介绍</Divider>
+        <div class="articleContent">我是一个小小少年,在新的一天有很多奇遇</div>
+       </div>
+       <div class="backBtn">
+          <Button type="info" shape="circle" @click="getBack()" ghost>回到主页</Button>
        </div>
        <div class="introductionFooter"></div>
     </div>
@@ -16,6 +20,11 @@ export default {
     name: 'introduction',
     data(){
       return {
+    }
+  },
+  methods: {
+    getBack: function(){
+      this.$router.push('/blogPage')
     }
   }
 }
@@ -37,5 +46,14 @@ export default {
   width 60%
   margin-left 20%
   margin-top 10%
-  
+
+.articleContent
+  height 600px
+.introductionFooter
+  width 100%
+  height 200px
+  background-color lightgrey 
+
+.backBtn
+  margin-left 70%
 </style>
