@@ -14,9 +14,9 @@ module.exports = {
         target: 'http://localhost:3001',
         changeOrigin: true,
         pathRewrite: {
-            '^/api': '/api'
+          '^/api': '/api'
         }
-    }
+      }
     },
 
     // Various Dev Server settings
@@ -27,7 +27,6 @@ module.exports = {
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
     /**
      * Source Maps
      */
@@ -72,9 +71,9 @@ module.exports = {
     // `npm run build --report`
     // Set to `true` or `false` to always turn it on or off
     bundleAnalyzerReport: process.env.npm_config_report
-  },
-
-  jwt: {
-    cert: '123'
   }
+
+  // jwt: {
+  //   cert: '123'
+  // }
 }

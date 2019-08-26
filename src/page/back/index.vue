@@ -67,22 +67,28 @@ export default {
   },
   methods: {
     addArticle: function() {
-      this.$router.push('./editArticle')
-      // this.$http({
-      //   method: 'get',
-      //   url: '/api/article/:aid',
-      //   data:{
-      //     aid: 2018,
-      //   }
-      //   }
-      // )
-      // .then(function (response) {
-      //   console.log(response)
-      //   this.$router.push('./editArticle')
-      // })
-      // .catch(function (error) {
-      //   console.log(error)
-      // })
+      let vue = this
+      vue.$router.push('./editArticle')
+      vue
+        .$http({
+          method: 'get',
+          url: '/api/article',
+          data: {
+            title: req.body.title,
+            author: req.body.author,
+            content: req.body.content,
+            createTime: Date(),
+            tags: req.body.tags,
+            isPublish: true
+          }
+        })
+        .then(function(response) {
+          console.log(response)
+          // vue.$router.push('./editArticle')
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
     },
     delArticle: function() {
       this.$http({

@@ -49,22 +49,22 @@ export default {
   methods: {
     // 登录该界面
     login: function() {
-      // this.$http({
-      //   method: 'post',
-      //   url: '/api/login',
-      //   data:{
-      //     name: this.formInline.name,
-      //     password: this.formInline.password
-      //   }
-      //   }
-      // )
-      // .then(function (response) {
-      //   console.log(response)
-      this.$router.push('/index')
-      //   })
-      //   .catch(function (error) {
-      //     console.log(error)
-      //   })
+      let vue = this
+      vue
+        .$http({
+          method: 'post',
+          url: '/api/login',
+          data: {
+            name: this.formInline.name,
+            password: this.formInline.password
+          }
+        })
+        .then(function(response) {
+          vue.$router.push('/index')
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
     }
   }
 }
