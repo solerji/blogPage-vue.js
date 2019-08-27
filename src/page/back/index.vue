@@ -8,7 +8,17 @@
     </div>
     <div class="indexMain">
       <div class="indexLeft">
-        <Table :columns="columns1" :data="data1" :show-header="false">
+        <Table
+          :columns="columns1"
+          :data="articleList"
+          :show-header="false"
+          @on-row-click="getOneArticle(index)"
+          highlight-row
+          ref="articleTable"
+        >
+          <template slot="title" slot-scope="{ row }">
+            <strong>{{ row.title }}</strong>
+          </template>
           <template slot="action" slot-scope="{ row, index }">
             <Button
               @click="show(index)"
@@ -24,6 +34,15 @@
       <div class="indexRight">
         <div class="articleContent">
           <div class="title">这是文章标题</div>
+          <div class="otherMessage">
+            <span class="author">
+              <Tag color="cyan" type="border">作者</Tag>
+            </span>
+            <span class="time">最新时间</span>
+            <span>
+              <Tag :key="item" color="cyan" v-for="item in tags">{{item.tag}}</Tag>
+            </span>
+          </div>
           <Divider />
           <div class="content">这是文章正文部分</div>
         </div>
@@ -40,7 +59,7 @@ export default {
       columns1: [
         {
           title: 'Title',
-          key: 'title'
+          slot: 'title'
         },
         {
           title: 'Action',
@@ -49,21 +68,19 @@ export default {
           align: 'center'
         }
       ],
-      data1: [
+      articleList: [],
+      tags: [
         {
-          title: 'John Brown'
+          tag: '科技'
         },
         {
-          title: 'Jim Green'
-        },
-        {
-          title: 'Joe Black'
-        },
-        {
-          title: 'Jon Snow'
+          tag: '生活'
         }
       ]
     }
+  },
+  mounted() {
+    this.getArticle()
   },
   methods: {
     addArticle: function() {
@@ -71,7 +88,7 @@ export default {
       vue.$router.push('./editArticle')
       vue
         .$http({
-          method: 'get',
+          method: 'post',
           url: '/api/article',
           data: {
             title: req.body.title,
@@ -90,17 +107,50 @@ export default {
           console.log(error)
         })
     },
-    delArticle: function() {
-      this.$http({
-        method: 'delete',
-        url: '/api/article/:aid',
-        data: {
-          aid: 2018
-        }
-      })
+    // delArticle: function() {
+    //   let vue = this
+    //   vue
+    //     .$http({
+    //       method: 'delete',
+    //       url: '/api/article',
+    //       data: {
+    //         aid: 2018
+    //       }
+    //     })
+    //     .then(function(response) {
+    //       console.log(response)
+    //     })
+    //     .catch(function(error) {
+    //       console.log(error)
+    //     })
+    // },
+    getArticle: function() {
+      let vue = this
+      vue
+        .$http({
+          method: 'get',
+          url: '/api/articles'
+        })
+        .then(function(response) {
+          vue.articleList = response.data.list
+          console.log(vue.articleList)
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+    },
+    getOneArticle: function(index) {
+      let vue = this
+      vue
+        .$http({
+          method: 'get',
+          url: '/api/article',
+          data: {
+            aid: index.aid
+          }
+        })
         .then(function(response) {
           console.log(response)
-          this.$router.push('/index')
         })
         .catch(function(error) {
           console.log(error)
@@ -152,4 +202,10 @@ export default {
 
 .content
   top: 2%
+
+.otherMessage
+  padding-left: 75%
+
+.author, .title, .time
+  padding: 3%
 </style>
