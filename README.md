@@ -33,10 +33,10 @@ vue-particle-line、
 后台部分：
 node.js、
 express、
-mogodb、
-mongoose
+mysql
 
 
 ## Update log
 2019-08-02 update firstPage Style, divide models
+
 2019-08-26 update axios methods, change mongodb to mysql
