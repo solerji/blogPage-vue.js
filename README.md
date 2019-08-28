@@ -22,6 +22,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## 内容说明
 本项目为个人博客的前端页面部分，开发模块分为管理平台和博客展示页面两部分。该项目涉及的后台部分代码在,https://github.com/solerji/solerji-blog-nodejs 开发ing，开发进度可查看Update log。
+
 功能点：（以下功能点全部完成时补充博客截图）
 
 1.博客展示页面：
