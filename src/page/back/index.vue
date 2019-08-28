@@ -12,7 +12,7 @@
           :columns="columns1"
           :data="articleList"
           :show-header="false"
-          @on-row-click="getOneArticle(index)"
+          @on-row-click="getOneArticle"
           highlight-row
           ref="articleTable"
         >
@@ -107,23 +107,23 @@ export default {
           console.log(error)
         })
     },
-    // delArticle: function() {
-    //   let vue = this
-    //   vue
-    //     .$http({
-    //       method: 'delete',
-    //       url: '/api/article',
-    //       data: {
-    //         aid: 2018
-    //       }
-    //     })
-    //     .then(function(response) {
-    //       console.log(response)
-    //     })
-    //     .catch(function(error) {
-    //       console.log(error)
-    //     })
-    // },
+    delArticle: function() {
+      let vue = this
+      vue
+        .$http({
+          method: 'delete',
+          url: '/api/article',
+          data: {
+            aid: 2018
+          }
+        })
+        .then(function(response) {
+          console.log(response)
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+    },
     getArticle: function() {
       let vue = this
       vue
@@ -139,14 +139,13 @@ export default {
           console.log(error)
         })
     },
-    getOneArticle: function(index) {
+    getOneArticle: function(data) {
       let vue = this
-      vue
-        .$http({
-          method: 'get',
-          url: '/api/article',
-          data: {
-            aid: index.aid
+      console.log(data.aid)
+      vue.$http
+        .get('/api/article', {
+          params: {
+            aid: data.aid
           }
         })
         .then(function(response) {
