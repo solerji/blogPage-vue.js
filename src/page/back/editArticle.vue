@@ -128,10 +128,6 @@ export default {
 .editArticleMain
   margin-top: 3%
 
-.saveContent
-  margin-left: 90%
-  margin-top: 2%
-
 .editArticleHeader
   display: flex
   flex-direction: row
@@ -146,4 +142,19 @@ export default {
 .editArticleTime
   position: absolute
   right: 2%
+
+.editArticleFooter
+  display: flex
+  flex-direction: row
+  padding-left: 90%
+  margin-top: 2%
+
+.editor
+  width: 100%
+  height: 40rem
+
+@media screen and (max-width: 1400px)
+  .editor
+    width: 100%
+    height: 22rem
 </style>

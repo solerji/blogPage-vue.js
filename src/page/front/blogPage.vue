@@ -1,59 +1,58 @@
 <template>
-    <div class="blogPage">
-        <div class="blogPageHeader">
-          <!-- 人数统计，埋点设置 -->
-            <div class="link">
-              <Icon type="logo-github" size="24" />
-              <Icon type="ios-mail" size="28" />
-            </div>
-             <div class="totalNumber">共有{{ peopleCount }}人来过</div>
-            <div class="head"> 
-              <Avatar icon="ios-person" size="large" />
-            </div>
-            <div class="blogPageBar">
-              <div class="ctlBtn">
-                <Button @click="getIntroduction" type="warning" ghost>个人介绍</Button>
-                <Button @click="getClass" type="info" ghost>博文分类</Button>
-              </div>
-              <Input class="input" search placeholder="输入搜索内容" />
-            </div>
+  <div class="blogPage">
+    <div class="blogPageHeader">
+      <!-- 人数统计，埋点设置 -->
+      <div class="link">
+        <Icon size="24" type="logo-github" />
+        <Icon size="28" type="ios-mail" />
+      </div>
+      <div class="totalNumber">共有{{ peopleCount }}人来过</div>
+      <div class="head">
+        <Avatar icon="ios-person" size="large" />
+      </div>
+      <div class="blogPageBar">
+        <div class="ctlBtn">
+          <Button @click="getIntroduction" ghost type="warning">个人介绍</Button>
+          <Button @click="getClass" ghost type="info">博文分类</Button>
         </div>
-        <div class="blogPageContainer">
-            <div class="leftContainer">
-              <articleGroup></articleGroup>
-            </div>
-            <div class="rightContainer">
-              <timeLine></timeLine>
-            </div>
-        </div>
-        <div class="blogPageFooter">
-        </div>
+        <Input class="input" placeholder="输入搜索内容" search />
+      </div>
     </div>
+    <div class="blogPageContainer">
+      <div class="leftContainer">
+        <articleGroup></articleGroup>
+      </div>
+      <div class="rightContainer">
+        <timeLine></timeLine>
+      </div>
+    </div>
+    <div class="blogPageFooter"></div>
+  </div>
 </template>
 <script>
 import articleGroup from '@/components/front/articleGroup'
 import timeLine from '@/components/front/timeLine'
 export default {
-    name: 'blogPage',
-    data(){
-      return {
-        articleGroup: 'articleGroup',
-        timeLine: 'timeLine',
-        peopleCount: '4700'
-      }
-    },
-    components: {
-      articleGroup,
-      timeLine
-    },
-    methods: {
-      getIntroduction: function(){
-            this.$router.push('/introduction')
-        },
-      getClass: function(){
-            this.$router.push('/classPage')
-        }
+  name: 'blogPage',
+  data() {
+    return {
+      articleGroup: 'articleGroup',
+      timeLine: 'timeLine',
+      peopleCount: '4700'
     }
+  },
+  components: {
+    articleGroup,
+    timeLine
+  },
+  methods: {
+    getIntroduction: function() {
+      this.$router.push('/introduction')
+    },
+    getClass: function() {
+      this.$router.push('/classPage')
+    }
+  }
 }
 </script>
 <style lang="stylus"  scoped>
@@ -62,62 +61,61 @@ export default {
   // opacity 0.8
 
 .blogPageHeader
-  width 100% 
+  width: 100%
 
 .blogPageFooter
-  width 100%
-  height 200px
-  margin-top 80%
-  background-color lightgrey 
+  width: 100%
+  height: 200px
+  margin-top: 80%
+  background-color: lightgrey
 
 .blogPageBar
-  position relative
-  margin-left 25%
-  margin-top 2%
+  position: relative
+  margin-left: 25%
+  margin-top: 2%
 
 .leftContainer
-  position relative
-  float left
-  width 60%
+  position: relative
+  float: left
+  width: 60%
 
 .rightContainer
-  position absolute
-  float left
-  margin-top 10%
-  margin-left 80%
-  width 40%
+  position: absolute
+  float: left
+  margin-top: 10%
+  margin-left: 80%
+  width: 40%
 
 .blogPageContainer
-  width 100%
+  width: 100%
 
 .ctlBtn
-  float left
-  padding-left 1%
-  margin-left -3%
+  float: left
+  padding-left: 1%
+  margin-left: -3%
 
-.input 
-  width 20%
-  margin-left 5%
-  border-color black
+.input
+  width: 20%
+  margin-left: 5%
+  border-color: black
 
 .head
-  position relative
-  width 70px
-  height 70px
-  margin-left 40%
+  position: relative
+  width: 70px
+  height: 70px
+  margin-left: 40%
 
 .totalNumber
-  width 100px
-  height 30px
-  margin-left 81%
-  font-size 13px
-  font-weight bold
+  width: 100px
+  height: 30px
+  margin-left: 81%
+  font-size: 13px
+  font-weight: bold
 
-.link 
-  width 100px
-  height 30px
-  margin-top 2%
-  margin-left 82%
-
+.link
+  width: 100px
+  height: 30px
+  margin-top: 2%
+  margin-left: 82%
 </style>
 

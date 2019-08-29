@@ -2,17 +2,19 @@
   <!-- 后台管理首页面 -->
   <div class="index">
     <div class="indexHeader"></div>
-    <!-- <div class="headImg"></div> -->
     <div class="newButton">
       <Button @click="addArticle()" ghost type="info">新增文档</Button>
     </div>
     <div class="indexMain">
       <div class="indexLeft">
+        <div>
+          <Tag class="listHeaderStyle" color="volcano" type="border">文章列表</Tag>
+        </div>
         <Table
           :columns="columns1"
           :data="articleList"
           :show-header="false"
-          @on-row-click="getOneArticle"
+          @on-row-click="getOneArticle(index)"
           highlight-row
           ref="articleTable"
         >
@@ -33,18 +35,18 @@
       </div>
       <div class="indexRight">
         <div class="articleContent">
-          <div class="title">这是文章标题</div>
+          <div class="title">{{ checkedArticle[0].title }}</div>
           <div class="otherMessage">
             <span class="author">
-              <Tag color="cyan" type="border">作者</Tag>
+              <Tag color="cyan" type="border">{{ checkedArticle[0].author }}</Tag>
             </span>
-            <span class="time">最新时间</span>
-            <span>
+            <span class="time">{{ checkedArticle[0].updateTime }}</span>
+            <span class="tags">
               <Tag :key="item" color="cyan" v-for="item in tags">{{item.tag}}</Tag>
             </span>
           </div>
           <Divider />
-          <div class="content">这是文章正文部分</div>
+          <div class="content">{{ checkedArticle[0].content }}</div>
         </div>
       </div>
     </div>
@@ -161,9 +163,9 @@ export default {
 <style lang="stylus"  scoped>
 .indexHeader
   height: 100px
-  background: url('~@/assets/images/header.png')
+  // background: url('~@/assets/images/header.png')
   // background-size: cover
-  background-repeat: no-repeat
+  // background-repeat: no-repeat
   width: 100%
   height: 10em
   opacity: 0.5
@@ -180,6 +182,7 @@ export default {
   position: relative
   float: left
   width: 70%
+  padding-left: 2%
   // background-color lightgrey
 
 .newButton
@@ -203,8 +206,14 @@ export default {
   top: 2%
 
 .otherMessage
-  padding-left: 75%
+  padding-left: 60%
 
-.author, .title, .time
-  padding: 3%
+.author, .time, .tags
+  padding-left: 5%
+
+.listHeaderStyle
+  margin-left: 2%
+  width: 10rem
+  text-align: center
+  font-size: 17px
 </style>
