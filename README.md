@@ -74,3 +74,5 @@ express、
 2019-08-27 update article page styles
 
 2019-08-28 update article Interface
+
+2019-08-29 update manage platform style
