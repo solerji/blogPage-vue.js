@@ -51,6 +51,22 @@ export default {
     },
     getClass: function() {
       this.$router.push('/classPage')
+    },
+    // 什么时候获取访客
+    getVisitorMessage: function() {
+      //  let vue = this
+      //   vue
+      //     .$http({
+      //       method: 'get',
+      //       url: '/api/visitor'
+      //     })
+      //     .then(function(response) {
+      //       vue.articleList = response.data.list
+      //       console.log(vue.articleList)
+      //     })
+      //     .catch(function(error) {
+      //       console.log(error)
+      //     })
     }
   }
 }

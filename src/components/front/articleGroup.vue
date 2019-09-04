@@ -4,10 +4,10 @@
     <Card
       :index="index"
       :key="item"
-      @click.native="getOneArticle"
+      @click.native="getOneArticle(item)"
       class="card"
       dis-hover
-      v-for="(item,index) in arrCard"
+      v-for="(item,index) in articleList"
     >
       <span slot="title">{{ item.title }}</span>
       <!-- <div class="articleContent"> -->
@@ -21,44 +21,25 @@ export default {
   name: 'articleGroup',
   data() {
     return {
-      arrCard: [
-        {
-          title: '第一篇文章',
-          content: '这是个实例'
-        },
-        {
-          title: '第二篇文章',
-          content: '这是个实例'
-        },
-        {
-          title: '第三篇文章',
-          content: '这是个实例'
-        },
-        {
-          title: '第四篇文章',
-          content: '这是个实例'
-        }
-      ]
+      articleList: [],
+      articleContent: []
     }
   },
   mounted() {
-    // this.getArticle()
+    this.getArticles()
   },
   methods: {
-    // getContent: function () {
-    //   this.$router.push('/contentPage')
-    // },
-    getOneArticle: function(data) {
+    getOneArticle: function(item) {
       let vue = this
-      console.log(data.aid)
+      console.log(item.aid)
       vue.$http
         .get('/api/article', {
           params: {
-            aid: data.aid
+            aid: item.aid
           }
         })
         .then(function(response) {
-          console.log(response)
+          vue.articleContent = response.data
           vue.$router.push('/contentPage')
         })
         .catch(function(error) {
@@ -80,22 +61,6 @@ export default {
           console.log(error)
         })
     }
-    // getArticle: function() {
-    //   axios
-    //     .post('/api/article', {
-    //       title: '第一篇文章',
-    //       author: 'solerji',
-    //       content: '爸爸和我去游乐园玩过山车',
-    //       createTime: '2019-05-18',
-    //       tags: '[测试]'
-    //     })
-    //     .then(function(response) {
-    //       console.log(response)
-    //     })
-    //     .catch(function(error) {
-    //       console.log(error)
-    //     })
-    // }
   }
 }
 </script>

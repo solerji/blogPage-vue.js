@@ -14,7 +14,7 @@
           :columns="columns1"
           :data="articleList"
           :show-header="false"
-          @on-row-click="getOneArticle(index)"
+          @on-row-click="getOneArticle"
           highlight-row
           ref="articleTable"
         >
@@ -29,24 +29,24 @@
               style="margin-right: 5px"
               type="primary"
             >编辑</Button>
-            <Button @click="delArticle(index)" ghost size="small" type="error">删除</Button>
+            <Button @click="remove(index)" ghost size="small" type="error">删除</Button>
           </template>
         </Table>
       </div>
       <div class="indexRight">
         <div class="articleContent">
-          <div class="title">{{ checkedArticle[0].title }}</div>
+          <div class="title">{{ articleContent.title }}</div>
           <div class="otherMessage">
             <span class="author">
-              <Tag color="cyan" type="border">{{ checkedArticle[0].author }}</Tag>
+              <Tag color="cyan" type="border">{{ articleContent.author }}</Tag>
             </span>
-            <span class="time">{{ checkedArticle[0].updateTime }}</span>
+            <span class="time">{{ articleContent.updateTime }}</span>
             <span class="tags">
-              <Tag :key="item" color="cyan" v-for="item in tags">{{item.tag}}</Tag>
+              <Tag color="cyan">{{articleContent.tags}}</Tag>
             </span>
           </div>
           <Divider />
-          <div class="content">{{ checkedArticle[0].content }}</div>
+          <div class="content">{{ articleContent.content }}</div>
         </div>
       </div>
     </div>
@@ -71,14 +71,8 @@ export default {
         }
       ],
       articleList: [],
-      tags: [
-        {
-          tag: '科技'
-        },
-        {
-          tag: '生活'
-        }
-      ]
+      articleContent: [],
+      delAid: ''
     }
   },
   mounted() {
@@ -109,14 +103,16 @@ export default {
           console.log(error)
         })
     },
-    delArticle: function() {
+    // 删除方法仍有问题
+    remove(index) {
+      console.log(index)
       let vue = this
       vue
         .$http({
           method: 'delete',
           url: '/api/article',
           data: {
-            aid: 2018
+            aid: vue.delAid
           }
         })
         .then(function(response) {
@@ -135,23 +131,23 @@ export default {
         })
         .then(function(response) {
           vue.articleList = response.data.list
-          console.log(vue.articleList)
+          // console.log(vue.articleList)
         })
         .catch(function(error) {
           console.log(error)
         })
     },
-    getOneArticle: function(data) {
+    getOneArticle: function(index) {
       let vue = this
-      console.log(data.aid)
+      vue.delAid = index.aid
       vue.$http
         .get('/api/article', {
           params: {
-            aid: data.aid
+            aid: index.aid
           }
         })
         .then(function(response) {
-          console.log(response)
+          vue.articleContent = response.data
         })
         .catch(function(error) {
           console.log(error)
