@@ -110,7 +110,7 @@ export default {
       vue
         .$http({
           method: 'delete',
-          url: '/api/article',
+          url: '/api/delArticle',
           data: {
             aid: vue.delAid
           }
