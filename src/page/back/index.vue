@@ -103,7 +103,6 @@ export default {
           console.log(error)
         })
     },
-    // 删除方法仍有问题
     remove(index) {
       console.log(index)
       let vue = this
