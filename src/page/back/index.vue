@@ -82,26 +82,6 @@ export default {
     addArticle: function() {
       let vue = this
       vue.$router.push('./editArticle')
-      vue
-        .$http({
-          method: 'post',
-          url: '/api/article',
-          data: {
-            title: req.body.title,
-            author: req.body.author,
-            content: req.body.content,
-            createTime: Date(),
-            tags: req.body.tags,
-            isPublish: true
-          }
-        })
-        .then(function(response) {
-          console.log(response)
-          // vue.$router.push('./editArticle')
-        })
-        .catch(function(error) {
-          console.log(error)
-        })
     },
     remove(index) {
       console.log(index)
