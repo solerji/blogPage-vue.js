@@ -75,27 +75,26 @@ export default {
         })
     },
     // patch?
-    // handleUpdate: function () {
-    //     this.$http({
-    //       method: 'post',
-    //       url: '/api/article',
-    //       data:{
-    //         title: this.title,
-    //         author: this.author,
-    //         content: this.content,
-    //         createTime : this.createTime,
-    //         tags: this.tags,
-    //       }
-    //       }
-    //     )
-    //     .then(function (response) {
-    //       console.log(response)
-    //       this.$router.push('/index')
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error)
-    //     })
-    // }
+    handleUpdate: function() {
+      this.$http({
+        method: 'post',
+        url: '/api/updateArticle',
+        data: {
+          title: this.title,
+          author: this.author,
+          content: this.content,
+          createTime: this.createTime,
+          tags: this.tags
+        }
+      })
+        .then(function(response) {
+          console.log(response)
+          this.$router.push('/index')
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+    },
     contentChange: function(value, render) {
       // 文字内容
       console.log(123, value)

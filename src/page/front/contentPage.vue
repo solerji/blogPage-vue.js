@@ -64,6 +64,9 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    getArticleContent: function() {}
   }
 }
 </script>

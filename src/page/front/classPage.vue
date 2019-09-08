@@ -63,12 +63,28 @@ export default {
           time: '2019年',
           content: '我写了第三篇博客'
         }
-      ]
+      ],
+      tagList: ''
     }
   },
   methods: {
     getBack: function() {
       this.$router.push('/blogPage')
+    },
+    getTags: function() {
+      let vue = this
+      vue
+        .$http({
+          method: 'get',
+          url: '/api/tags'
+        })
+        .then(function(response) {
+          vue.tagList = response.data.list
+          // console.log(vue.articleList)
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
     }
   }
 }

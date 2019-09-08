@@ -41,6 +41,7 @@ export default {
         .then(function(response) {
           vue.articleContent = response.data
           vue.$router.push('/contentPage')
+          console.log(vue.articleContent)
         })
         .catch(function(error) {
           console.log(error)
