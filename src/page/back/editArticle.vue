@@ -27,6 +27,7 @@
           placement="top"
           style="width: 200px"
           type="datetime"
+          v-model="createTime"
         ></DatePicker>
       </span>
     </div>
@@ -47,7 +48,7 @@ export default {
       title: '',
       author: '',
       content: '',
-      createTime: Date,
+      createTime: '',
       tags: '',
       contentHtml: '',
       count: [0, 1, 2]
@@ -57,11 +58,11 @@ export default {
     handleSubmit: function() {
       this.$http({
         method: 'post',
-        url: '/api/article',
+        url: '/api/addArticle',
         data: {
           title: this.title,
           author: this.author,
-          content: this.content,
+          content: this.contentHtml,
           createTime: this.createTime,
           tags: this.tags
         }
@@ -123,6 +124,7 @@ export default {
 
 .editArticleHeader
   height: 20%
+  z-index: 4000
 
 .editArticleMain
   margin-top: 3%
@@ -156,4 +158,7 @@ export default {
   .editor
     width: 100%
     height: 22rem
+
+.saveContent, .upadteContent
+  margin-left: 90%
 </style>
