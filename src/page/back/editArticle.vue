@@ -22,6 +22,7 @@
       </span>
       <span class="editArticleTime">
         <DatePicker
+          @on-change="changeDate"
           format="yyyy-MM-dd HH:mm"
           placeholder="请选择发布日期和时间"
           placement="top"
@@ -83,7 +84,7 @@ export default {
         data: {
           title: this.title,
           author: this.author,
-          content: this.content,
+          content: this.contentHtml,
           createTime: this.createTime,
           tags: this.tags
         }
@@ -113,6 +114,10 @@ export default {
     handleClose2(event, name) {
       const index = this.count.indexOf(name)
       this.count.splice(index, 1)
+    },
+    changeDate(datetime) {
+      this.createTime = datetime
+      console.log(datetime)
     }
   }
 }
