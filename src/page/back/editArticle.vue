@@ -52,7 +52,8 @@ export default {
       createTime: '',
       tags: '',
       contentHtml: '',
-      count: [0, 1, 2]
+      count: [0, 1, 2],
+      updateAid: ''
     }
   },
   methods: {
@@ -82,6 +83,7 @@ export default {
         method: 'post',
         url: '/api/updateArticle',
         data: {
+          aid: this.updateAid,
           title: this.title,
           author: this.author,
           content: this.contentHtml,

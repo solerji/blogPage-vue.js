@@ -23,7 +23,7 @@
           </template>
           <template slot="action" slot-scope="{ row, index }">
             <Button
-              @click="show(index)"
+              @click="show(row)"
               ghost
               size="small"
               style="margin-right: 5px"
@@ -72,7 +72,8 @@ export default {
       ],
       articleList: [],
       articleContent: [],
-      delAid: ''
+      delAid: '',
+      articleUpdateContent: []
     }
   },
   mounted() {
@@ -96,6 +97,7 @@ export default {
         })
         .then(function(response) {
           console.log(response)
+          vue.getArticle()
         })
         .catch(function(error) {
           console.log(error)
@@ -127,6 +129,25 @@ export default {
         })
         .then(function(response) {
           vue.articleContent = response.data
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+    },
+    show(row) {
+      console.log(1212, row)
+      let vue = this
+      vue.$router.push('./editArticle')
+      vue.$http
+        .get('/api/article', {
+          params: {
+            aid: row.aid
+          }
+        })
+        .then(function(response) {
+          vue.articleUpdateContent = response.data
+
+          console.log(58768, response.data)
         })
         .catch(function(error) {
           console.log(error)
