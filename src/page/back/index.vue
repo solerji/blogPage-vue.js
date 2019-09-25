@@ -119,6 +119,7 @@ export default {
         })
     },
     getOneArticle: function(index) {
+      // console.log(index)
       let vue = this
       vue.delAid = index.aid
       vue.$http
@@ -135,9 +136,9 @@ export default {
         })
     },
     show(row) {
-      console.log(1212, row)
+      // console.log(1212, row)
       let vue = this
-      vue.$router.push('./editArticle')
+      // vue.$router.push('./editArticle')
       vue.$http
         .get('/api/article', {
           params: {
@@ -145,9 +146,13 @@ export default {
           }
         })
         .then(function(response) {
-          vue.articleUpdateContent = response.data
-
-          console.log(58768, response.data)
+          // vue.articleUpdateContent = response.data
+          let articleUpdateContent = response.data
+          vue.$router.push({
+            name: 'editArticle',
+            params: { articleUpdateContent }
+          })
+          // console.log(58768, response.data)
         })
         .catch(function(error) {
           console.log(error)

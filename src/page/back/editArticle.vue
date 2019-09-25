@@ -56,7 +56,17 @@ export default {
       updateAid: ''
     }
   },
+  mounted() {
+    // console.log(8989, this.$route.params.articleUpdateContent)
+    this.numberGet()
+  },
   methods: {
+    numberGet() {
+      var numberGet = this.$route.params.articleUpdateContent
+      this.title = numberGet.title
+      this.author = numberGet.author
+      this.value = numberGet.content
+    },
     handleSubmit: function() {
       this.$http({
         method: 'post',

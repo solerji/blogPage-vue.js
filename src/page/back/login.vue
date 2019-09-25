@@ -6,7 +6,13 @@
       <div class="loginMain">
         <div class="title">博客后台登录</div>
         <div class="loginForm">
-          <Form :model="formInline" :rules="ruleInline" label-position="top" ref="formInline">
+          <Form
+            :model="formInline"
+            :rules="ruleInline"
+            @keydown="login('formInline')"
+            label-position="top"
+            ref="formInline"
+          >
             <FormItem label="用户名" prop="name">
               <Input class="input" placeholder="用户名" type="text" v-model="formInline.name"></Input>
             </FormItem>
