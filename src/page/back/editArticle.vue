@@ -12,12 +12,12 @@
         <Tag
           :key="item"
           :name="item"
-          @on-close="handleClose2"
+          @on-close="handleClose"
           closable
           color="error"
           type="dot"
-          v-for="item in count"
-        >{{ item + 1 }}</Tag>
+          v-for="item in tagArray"
+        >{{ item }}</Tag>
         <Button @click="handleAdd" icon="ios-add" size="small" type="dashed">添加标签</Button>
       </span>
       <span class="editArticleTime">
@@ -35,9 +35,11 @@
     <div class="editArticleMain">
       <mavon-editor @change="contentChange" v-model="value" />
     </div>
-    <div class="editArticleFooter"></div>
-    <Button @click="handleSubmit()" class="saveContent" ghost type="primary">发布</Button>
-    <Button @click="handleUpdate()" class="upadteContent" ghost type="primary">修改提交</Button>
+    <div class="editArticleFooter">
+      <Button @click="exit()" class="exit" ghost type="primary">返回</Button>
+      <Button @click="handleSubmit()" class="saveContent" ghost type="primary">发布</Button>
+      <Button @click="handleUpdate()" class="upadteContent" ghost type="primary">修改提交</Button>
+    </div>
   </div>
 </template>
 <script>
@@ -52,12 +54,11 @@ export default {
       createTime: '',
       tags: '',
       contentHtml: '',
-      count: [0, 1, 2],
-      updateAid: ''
+      updateAid: '',
+      tagArray: ['测试', '软件']
     }
   },
   mounted() {
-    // console.log(8989, this.$route.params.articleUpdateContent)
     this.numberGet()
   },
   methods: {
@@ -66,22 +67,29 @@ export default {
       this.title = numberGet.title
       this.author = numberGet.author
       this.value = numberGet.content
+      this.updateAid = numberGet.aid
     },
     handleSubmit: function() {
-      this.$http({
-        method: 'post',
-        url: '/api/addArticle',
-        data: {
-          title: this.title,
-          author: this.author,
-          content: this.contentHtml,
-          createTime: this.createTime,
-          tags: this.tags
-        }
-      })
+      let vue = this
+      let tagsTmp = vue.tagArray.join(',')
+      console.log(this.createTime)
+      vue
+        .$http({
+          method: 'post',
+          url: '/api/addArticle',
+          data: {
+            title: vue.title,
+            author: vue.author,
+            content: vue.contentHtml,
+            createTime: vue.createTime,
+            tags: tagsTmp,
+            publish: '1'
+          }
+        })
         .then(function(response) {
           console.log(response)
-          this.$router.push('/index')
+          vue.$Message.success('发布成功')
+          vue.$router.push('/index')
         })
         .catch(function(error) {
           console.log(error)
@@ -89,21 +97,25 @@ export default {
     },
     // patch?
     handleUpdate: function() {
-      this.$http({
-        method: 'post',
-        url: '/api/updateArticle',
-        data: {
-          aid: this.updateAid,
-          title: this.title,
-          author: this.author,
-          content: this.contentHtml,
-          createTime: this.createTime,
-          tags: this.tags
-        }
-      })
+      let vue = this
+      let tagsTmp = vue.tagArray.join(',')
+      vue
+        .$http({
+          method: 'post',
+          url: '/api/updateArticle',
+          data: {
+            aid: vue.updateAid,
+            title: vue.title,
+            author: vue.author,
+            content: vue.contentHtml,
+            createTime: vue.createTime,
+            tags: tagsTmp
+          }
+        })
         .then(function(response) {
           console.log(response)
-          this.$router.push('/index')
+          vue.$Message.success('更新成功')
+          vue.$router.push('/index')
         })
         .catch(function(error) {
           console.log(error)
@@ -117,19 +129,25 @@ export default {
       this.contentHtml = render
     },
     handleAdd() {
-      if (this.count.length) {
-        this.count.push(this.count[this.count.length - 1] + 1)
-      } else {
-        this.count.push(0)
-      }
+      // if (this.tagArray.length) {
+      //   console.log(this.tagArray)
+      //   this.tagArray.push(this.tagArray[this.tagArray.length - 1] + 1)
+      //   console.log(3424, this.tagArray)
+      // } else {
+      //   this. count.push(0)
+      // }
     },
-    handleClose2(event, name) {
-      const index = this.count.indexOf(name)
-      this.count.splice(index, 1)
+    handleClose(event, name) {
+      const index = this.tagArray.indexOf(name)
+      this.tagArray.splice(index, 1)
+      console.log(3, this.tagArray)
     },
     changeDate(datetime) {
       this.createTime = datetime
       console.log(datetime)
+    },
+    exit() {
+      this.$router.push('/index')
     }
   }
 }
@@ -164,7 +182,7 @@ export default {
 .editArticleFooter
   display: flex
   flex-direction: row
-  padding-left: 90%
+  padding-left: 85%
   margin-top: 2%
 
 .editor
@@ -176,6 +194,6 @@ export default {
     width: 100%
     height: 22rem
 
-.saveContent, .upadteContent
-  margin-left: 90%
+.exit, .saveContent, .upadteContent
+  margin-left: 10px
 </style>

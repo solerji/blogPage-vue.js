@@ -32,6 +32,9 @@
             <Button @click="remove(index)" ghost size="small" type="error">删除</Button>
           </template>
         </Table>
+        <Modal @on-cancel="cancel" @on-ok="ok" title="警告" v-model="modal">
+          <p>确认删除？</p>
+        </Modal>
       </div>
       <div class="indexRight">
         <div class="articleContent">
@@ -42,7 +45,7 @@
             </span>
             <span class="time">{{ articleContent.updateTime }}</span>
             <span class="tags">
-              <Tag color="cyan">{{articleContent.tags}}</Tag>
+              <Tag :key="item" color="cyan" v-for="item in tagsArray">{{item}}</Tag>
             </span>
           </div>
           <Divider />
@@ -73,7 +76,9 @@ export default {
       articleList: [],
       articleContent: [],
       delAid: '',
-      articleUpdateContent: []
+      articleUpdateContent: [],
+      tagsArray: [],
+      modal: false
     }
   },
   mounted() {
@@ -87,21 +92,7 @@ export default {
     remove(index) {
       console.log(index)
       let vue = this
-      vue
-        .$http({
-          method: 'delete',
-          url: '/api/delArticle',
-          data: {
-            aid: vue.delAid
-          }
-        })
-        .then(function(response) {
-          console.log(response)
-          vue.getArticle()
-        })
-        .catch(function(error) {
-          console.log(error)
-        })
+      vue.modal = true
     },
     getArticle: function() {
       let vue = this
@@ -119,7 +110,6 @@ export default {
         })
     },
     getOneArticle: function(index) {
-      // console.log(index)
       let vue = this
       vue.delAid = index.aid
       vue.$http
@@ -130,15 +120,15 @@ export default {
         })
         .then(function(response) {
           vue.articleContent = response.data
+          vue.tagsArray = response.data.tags.split(',')
         })
         .catch(function(error) {
           console.log(error)
         })
     },
     show(row) {
-      // console.log(1212, row)
       let vue = this
-      // vue.$router.push('./editArticle')
+      console.log(row.aid)
       vue.$http
         .get('/api/article', {
           params: {
@@ -146,17 +136,37 @@ export default {
           }
         })
         .then(function(response) {
-          // vue.articleUpdateContent = response.data
           let articleUpdateContent = response.data
           vue.$router.push({
             name: 'editArticle',
             params: { articleUpdateContent }
           })
-          // console.log(58768, response.data)
         })
         .catch(function(error) {
           console.log(error)
         })
+    },
+    ok() {
+      let vue = this
+      console.log(vue.delAid)
+      vue
+        .$http({
+          method: 'delete',
+          url: '/api/delArticle',
+          data: {
+            aid: vue.delAid
+          }
+        })
+        .then(function(response) {
+          vue.$Message.success('删除成功')
+          vue.getArticle()
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+    },
+    cancel() {
+      this.$Message.info('Clicked cancel')
     }
   }
 }
