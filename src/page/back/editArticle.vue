@@ -3,7 +3,7 @@
   <div class="editArticle">
     <div class="editArticleHeader">
       <span class="editArticleTitle">
-        <Input placeholder="请输入标题" style="width: 300px" v-model="title" />
+        <Input placeholder="请输入标题" style="width: 300px" v-model="header" />
       </span>
       <span class="editArticleAuthor">
         <Input placeholder="请输入作者名" style="width: 300px" v-model="author" />
@@ -18,9 +18,18 @@
           type="dot"
           v-for="item in tagArray"
         >{{ item }}</Tag>
-        <Button @click="handleAdd" icon="ios-add" size="small" type="dashed">添加标签</Button>
+        <Poptip trigger="focus">
+          <Input
+            @on-enter="getKey"
+            clearable
+            placeholder="请输入标签"
+            style="width: 120px"
+            v-model="tagValue"
+          />
+          <div slot="content">{{ formatTags }}</div>
+        </Poptip>
       </span>
-      <span class="editArticleTime">
+      <!-- <span class="editArticleTime">
         <DatePicker
           @on-change="changeDate"
           format="yyyy-MM-dd HH:mm"
@@ -30,7 +39,7 @@
           type="datetime"
           v-model="createTime"
         ></DatePicker>
-      </span>
+      </span>-->
     </div>
     <div class="editArticleMain">
       <mavon-editor @change="contentChange" v-model="value" />
@@ -38,7 +47,7 @@
     <div class="editArticleFooter">
       <Button @click="exit()" class="exit" ghost type="primary">返回</Button>
       <Button @click="handleSubmit()" class="saveContent" ghost type="primary">发布</Button>
-      <Button @click="handleUpdate()" class="upadteContent" ghost type="primary">修改提交</Button>
+      <Button @click="handleUpdate()" class="upadteContent" ghost type="primary">提交更新内容</Button>
     </div>
   </div>
 </template>
@@ -48,14 +57,25 @@ export default {
   data() {
     return {
       value: '',
-      title: '',
+      header: '',
       author: '',
       content: '',
-      createTime: '',
+      // createTime: '',
       tags: '',
       contentHtml: '',
       updateAid: '',
-      tagArray: ['测试', '软件']
+      tagArray: [],
+      tagValue: ''
+    }
+  },
+  computed: {
+    formatTags() {
+      if (this.tagValue === '') return '请输入标签'
+      function parseNumber(str) {
+        const re = /(?=(?!)(d{3})+$)/g
+        return str.replace(re, ',')
+      }
+      return parseNumber(this.tagValue)
     }
   },
   mounted() {
@@ -64,21 +84,24 @@ export default {
   methods: {
     numberGet() {
       var numberGet = this.$route.params.articleUpdateContent
-      this.title = numberGet.title
+      this.header = numberGet.title
       this.author = numberGet.author
       this.value = numberGet.content
       this.updateAid = numberGet.aid
+      this.tagArray = numberGet.tags.split(',')
+    },
+    getKey: function() {
+      this.tagArray.push(this.tagValue)
     },
     handleSubmit: function() {
       let vue = this
       let tagsTmp = vue.tagArray.join(',')
-      console.log(this.createTime)
       vue
         .$http({
           method: 'post',
           url: '/api/addArticle',
           data: {
-            title: vue.title,
+            title: vue.header,
             author: vue.author,
             content: vue.contentHtml,
             createTime: vue.createTime,
@@ -87,7 +110,6 @@ export default {
           }
         })
         .then(function(response) {
-          console.log(response)
           vue.$Message.success('发布成功')
           vue.$router.push('/index')
         })
@@ -95,7 +117,6 @@ export default {
           console.log(error)
         })
     },
-    // patch?
     handleUpdate: function() {
       let vue = this
       let tagsTmp = vue.tagArray.join(',')
@@ -105,7 +126,7 @@ export default {
           url: '/api/updateArticle',
           data: {
             aid: vue.updateAid,
-            title: vue.title,
+            title: vue.header,
             author: vue.author,
             content: vue.contentHtml,
             createTime: vue.createTime,
@@ -123,29 +144,20 @@ export default {
     },
     contentChange: function(value, render) {
       // 文字内容
-      console.log(123, value)
+      // console.log(123, value)
       // html解析
-      console.log(render)
+      // console.log(render)
       this.contentHtml = render
-    },
-    handleAdd() {
-      // if (this.tagArray.length) {
-      //   console.log(this.tagArray)
-      //   this.tagArray.push(this.tagArray[this.tagArray.length - 1] + 1)
-      //   console.log(3424, this.tagArray)
-      // } else {
-      //   this. count.push(0)
-      // }
     },
     handleClose(event, name) {
       const index = this.tagArray.indexOf(name)
       this.tagArray.splice(index, 1)
       console.log(3, this.tagArray)
     },
-    changeDate(datetime) {
-      this.createTime = datetime
-      console.log(datetime)
-    },
+    // changeDate(datetime) {
+    //   this.createTime = datetime
+    //   console.log(datetime)
+    // },
     exit() {
       this.$router.push('/index')
     }
@@ -168,16 +180,12 @@ export default {
   display: flex
   flex-direction: row
 
-.editArticleTitle, .editArticleTime, .editArticleTag, .editArticleAuthor
+.editArticleTitle, .editArticleTag, .editArticleAuthor
   padding-top: 4%
   padding-left: 2%
 
 .editArticleTag
   position: relative
-
-.editArticleTime
-  position: absolute
-  right: 2%
 
 .editArticleFooter
   display: flex

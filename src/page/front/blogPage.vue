@@ -15,7 +15,13 @@
           <Button @click="getIntroduction" ghost type="warning">个人介绍</Button>
           <Button @click="getClass" ghost type="info">博文分类</Button>
         </div>
-        <Input class="input" placeholder="输入搜索内容" search />
+        <Input
+          @click="searchArcticle('searchContent')"
+          class="input"
+          placeholder="输入搜索内容"
+          search
+          v-model="searchContent"
+        />
       </div>
     </div>
     <div class="blogPageContainer">
@@ -38,7 +44,8 @@ export default {
     return {
       articleGroup: 'articleGroup',
       timeLine: 'timeLine',
-      peopleCount: '4700'
+      peopleCount: '4700',
+      searchContent: ''
     }
   },
   components: {
@@ -51,6 +58,9 @@ export default {
     },
     getClass: function() {
       this.$router.push('/classPage')
+    },
+    searchArcticle: function(searchContent) {
+      console.log(searchContent)
     },
     // 什么时候获取访客
     getVisitorMessage: function() {

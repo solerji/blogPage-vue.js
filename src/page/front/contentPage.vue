@@ -2,20 +2,21 @@
   <!-- 文章内容页面 -->
   <div class="contentPage">
     <div class="contentMain">
-      <div class="contentTitle">{{ checkedArticle[0].title }}</div>
+      <div class="contentTitle">{{ checkedArticle.title }}</div>
       <div class="otherMessage">
         <span class="author">
-          <Tag color="cyan" type="border">{{ checkedArticle[0].author }}</Tag>
+          <Tag color="cyan" type="border">{{ checkedArticle.author }}</Tag>
         </span>
-        <span class="time">{{ checkedArticle[0].updateTime }}</span>
+        <span class="time">{{ checkedArticle.createTime }}</span>
+        <span class="time">{{ checkedArticle.updateTime }}</span>
         <span class="tags">
-          <Tag :key="item" color="cyan" v-for="item in tags">{{item.tag}}</Tag>
+          <Tag :key="item" color="cyan" v-for="item in tags">{{item}}</Tag>
         </span>
       </div>
       <Divider class="headDivider" orientation="left">Left Text</Divider>
       <div class="contentMarkdown">
         <div class="contentMarkdownMain">
-          <div class="content">{{ checkedArticle[0].content }}</div>
+          <div class="content">{{ checkedArticle.content }}</div>
         </div>
         <div class="contentMarkdownLeft">47297483</div>
         <div class="contentMarkdownRight">428934830</div>
@@ -46,27 +47,19 @@ export default {
   name: 'contentPage',
   data() {
     return {
-      tags: [
-        {
-          tag: '科技'
-        },
-        {
-          tag: '生活'
-        }
-      ],
-      checkedArticle: [
-        {
-          title: '这是一篇文章',
-          author: '作者姓名',
-          tags: ['科技', '生活'],
-          updateTime: '2018-09-08',
-          content: '这是一篇文章哈哈哈哈哈哈'
-        }
-      ]
+      tags: [],
+      checkedArticle: []
     }
   },
+  mounted() {
+    this.getArticleContent()
+  },
   methods: {
-    getArticleContent: function() {}
+    getArticleContent: function() {
+      let articleDetail = this.$route.params.articleContent
+      // this.tags = articleDetail.tags.split(',')
+      this.checkedArticle = articleDetail
+    }
   }
 }
 </script>

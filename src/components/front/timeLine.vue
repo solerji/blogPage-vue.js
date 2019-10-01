@@ -7,12 +7,12 @@
       <div class="timelineGroup">
         <Timeline>
           <TimelineItem
-            :color="red"
             :index="index"
-            :key="item"
+            :key="item.title"
+            color="red"
             v-for="(item,index) in timelineList"
           >
-            <p class="time">{{ item.updateTime }}</p>
+            <p class="time">{{ item.showTime }}</p>
             <p class="content">{{ item.title }}</p>
           </TimelineItem>
         </Timeline>更多内容请搜索……
@@ -41,6 +41,10 @@ export default {
         })
         .then(function(response) {
           vue.timelineList = response.data.list
+          console.log(vue.timelineList)
+          if (vue.timelineList.length >= 10) {
+            console.log('最多10条')
+          }
         })
         .catch(function(error) {
           console.log(error)

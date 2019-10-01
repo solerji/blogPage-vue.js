@@ -67,6 +67,9 @@ export default {
       tagList: ''
     }
   },
+  mounted() {
+    this.getTags()
+  },
   methods: {
     getBack: function() {
       this.$router.push('/blogPage')

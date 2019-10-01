@@ -9,15 +9,15 @@
           <Form
             :model="formInline"
             :rules="ruleInline"
-            @keydown="login('formInline')"
+            @keydown.enter.native.prevent="login('formInline')"
             label-position="top"
             ref="formInline"
           >
             <FormItem label="用户名" prop="name">
-              <Input class="input" placeholder="用户名" type="text" v-model="formInline.name"></Input>
+              <Input class="input" placeholder="用户名" type="text" v-model="formInline.name" />
             </FormItem>
             <FormItem label="密码" prop="password">
-              <Input class="input" placeholder="密码" type="password" v-model="formInline.password"></Input>
+              <Input class="input" placeholder="密码" type="password" v-model="formInline.password" />
             </FormItem>
             <FormItem>
               <Button @click="login('formInline')" ghost type="primary">登录</Button>

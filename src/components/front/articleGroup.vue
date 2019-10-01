@@ -3,13 +3,13 @@
   <div class="articleGroup">
     <Card
       :index="index"
-      :key="item"
+      :key="item.title"
       @click.native="getOneArticle(item)"
       class="card"
       dis-hover
       v-for="(item,index) in articleList"
     >
-      <span slot="title">{{ item.title }}</span>
+      <span slot="title" style="font-weight: 500;color: grey;">{{ item.title }}</span>
       <!-- <div class="articleContent"> -->
       <span>{{ item.content }}</span>
       <!-- </div> -->
@@ -39,9 +39,13 @@ export default {
           }
         })
         .then(function(response) {
-          vue.articleContent = response.data
-          vue.$router.push('/contentPage')
-          console.log(vue.articleContent)
+          let articleContent = response.data
+          // vue.$router.push('/contentPage')
+          vue.$router.push({
+            name: 'contentPage',
+            params: { articleContent }
+          })
+          // console.log(vue.articleContent)
         })
         .catch(function(error) {
           console.log(error)
@@ -56,7 +60,7 @@ export default {
         })
         .then(function(response) {
           vue.articleList = response.data.list
-          console.log(vue.articleList)
+          // console.log(vue.articleList)
         })
         .catch(function(error) {
           console.log(error)

@@ -19,7 +19,7 @@ Vue.use(iView)
 Vue.use(animated)
 Vue.use(mavonEditor)
 Vue.config.productionTip = false
-Vue.use(axios)
+Vue.prototype.$axios = axios
 Vue.use(VueAwesomeSwiper /* { default global options } */)
 Vue.use(vueParticleLine)
 Vue.prototype.$http = axios

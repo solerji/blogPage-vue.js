@@ -11,7 +11,7 @@
           <Tag class="listHeaderStyle" color="volcano" type="border">文章列表</Tag>
         </div>
         <Table
-          :columns="columns1"
+          :columns="columns"
           :data="articleList"
           :show-header="false"
           @on-row-click="getOneArticle"
@@ -43,6 +43,7 @@
             <span class="author">
               <Tag color="cyan" type="border">{{ articleContent.author }}</Tag>
             </span>
+            <span class="time">{{ articleContent.createTime }}</span>
             <span class="time">{{ articleContent.updateTime }}</span>
             <span class="tags">
               <Tag :key="item" color="cyan" v-for="item in tagsArray">{{item}}</Tag>
@@ -61,7 +62,7 @@ export default {
   name: 'index',
   data() {
     return {
-      columns1: [
+      columns: [
         {
           title: 'Title',
           slot: 'title'
@@ -217,7 +218,7 @@ export default {
   top: 2%
 
 .otherMessage
-  padding-left: 60%
+  padding-left: 40%
 
 .author, .time, .tags
   padding-left: 5%
