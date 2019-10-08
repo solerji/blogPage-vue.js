@@ -1,4 +1,4 @@
-# blogAdmin
+# solerji's blog
 
 > A Vue.js project
 
