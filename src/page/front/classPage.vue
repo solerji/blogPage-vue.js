@@ -5,19 +5,25 @@
     <div class="classGroup">
       <Button
         :item="index"
-        :key="item"
+        :key="item.tag_name"
+        @click="getTagsAndTimeline(item)"
         class="classBtn"
         ghost
         shape="circle"
-        v-for="(item,index) in arrClass"
-      >{{item.className}}</Button>
+        v-for="(item,index) in tagList"
+      >{{item.tag_name}}</Button>
     </div>
-    <Divider class="classDivider" orientation="left">共有{{searchCount}}篇日志</Divider>
+    <Divider class="classDivider" orientation="left">共有{{timelineList.length}}篇日志</Divider>
     <div class="filterClass">
       <Timeline>
-        <TimelineItem :index="index" :key="item" color="red" v-for="(item,index) in arrTimeLine">
-          <p class="time">{{ item.time }}</p>
-          <p class="content">{{ item.content }}</p>
+        <TimelineItem
+          :index="index"
+          :key="item.tag_name"
+          color="red"
+          v-for="(item,index) in timelineList"
+        >
+          <p class="time">{{ item.update_time }}</p>
+          <p class="content">{{ item.article_title }}</p>
         </TimelineItem>
       </Timeline>
     </div>
@@ -32,23 +38,6 @@ export default {
   name: 'classPage',
   data() {
     return {
-      arrClass: [
-        {
-          className: '大数据'
-        },
-        {
-          className: '人工智能'
-        },
-        {
-          className: '技术'
-        },
-        {
-          className: '知识'
-        },
-        {
-          className: '前端'
-        }
-      ],
       searchCount: '3',
       arrTimeLine: [
         {
@@ -64,7 +53,8 @@ export default {
           content: '我写了第三篇博客'
         }
       ],
-      tagList: ''
+      timelineList: [],
+      tagList: []
     }
   },
   mounted() {
@@ -83,6 +73,24 @@ export default {
         })
         .then(function(response) {
           vue.tagList = response.data.list
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+    },
+    getTagsAndTimeline: function(item) {
+      let vue = this
+      console.log(item.tag_name)
+      vue
+        .$http({
+          method: 'post',
+          url: '/api/tagsAndTime',
+          data: {
+            tagName: item.tag_name
+          }
+        })
+        .then(function(response) {
+          vue.timelineList = response.data.list
           // console.log(vue.articleList)
         })
         .catch(function(error) {

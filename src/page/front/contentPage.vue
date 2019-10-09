@@ -7,8 +7,7 @@
         <span class="author">
           <Tag color="cyan" type="border">{{ checkedArticle.author }}</Tag>
         </span>
-        <span class="time">{{ checkedArticle.createTime }}</span>
-        <span class="time">{{ checkedArticle.updateTime }}</span>
+        <span class="time">{{ checkedArticle.update_time }}</span>
         <span class="tags">
           <Tag :key="item" color="cyan" v-for="item in tags">{{item}}</Tag>
         </span>
@@ -57,7 +56,6 @@ export default {
   methods: {
     getArticleContent: function() {
       let articleDetail = this.$route.params.articleContent
-      // this.tags = articleDetail.tags.split(',')
       this.checkedArticle = articleDetail
     }
   }

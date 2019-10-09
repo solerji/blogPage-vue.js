@@ -43,10 +43,9 @@
             <span class="author">
               <Tag color="cyan" type="border">{{ articleContent.author }}</Tag>
             </span>
-            <span class="time">{{ articleContent.createTime }}</span>
-            <span class="time">{{ articleContent.updateTime }}</span>
+            <span class="time">{{ articleContent.update_time }}</span>
             <span class="tags">
-              <Tag :key="item" color="cyan" v-for="item in tagsArray">{{item}}</Tag>
+              <Tag :key="item" color="cyan" v-for="item in tagsArray">{{item.tag_name}}</Tag>
             </span>
           </div>
           <Divider />
@@ -104,7 +103,6 @@ export default {
         })
         .then(function(response) {
           vue.articleList = response.data.list
-          // console.log(vue.articleList)
         })
         .catch(function(error) {
           console.log(error)
@@ -120,8 +118,8 @@ export default {
           }
         })
         .then(function(response) {
-          vue.articleContent = response.data
-          vue.tagsArray = response.data.tags.split(',')
+          vue.articleContent = response.data.article
+          vue.tagsArray = response.data.tags
         })
         .catch(function(error) {
           console.log(error)

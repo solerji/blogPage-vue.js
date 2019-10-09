@@ -10,14 +10,14 @@
       </span>
       <span class="editArticleTag">
         <Tag
-          :key="item"
-          :name="item"
+          :key="item.tag_name"
+          :name="item.tag_name"
           @on-close="handleClose"
           closable
           color="error"
           type="dot"
           v-for="item in tagArray"
-        >{{ item }}</Tag>
+        >{{ item.tag_name }}</Tag>
         <Poptip trigger="focus">
           <Input
             @on-enter="getKey"
@@ -29,6 +29,7 @@
           <div slot="content">{{ formatTags }}</div>
         </Poptip>
       </span>
+      <!-- 用户自行设定发布时间 -->
       <!-- <span class="editArticleTime">
         <DatePicker
           @on-change="changeDate"
@@ -84,18 +85,20 @@ export default {
   methods: {
     numberGet() {
       var numberGet = this.$route.params.articleUpdateContent
-      this.header = numberGet.title
-      this.author = numberGet.author
-      this.value = numberGet.content
-      this.updateAid = numberGet.aid
-      this.tagArray = numberGet.tags.split(',')
+      this.header = numberGet.article.title
+      this.author = numberGet.article.author
+      this.value = numberGet.article.content
+      this.updateAid = numberGet.article.aid
+      this.tagArray = numberGet.tags
     },
     getKey: function() {
-      this.tagArray.push(this.tagValue)
+      let tagKeyObj = {}
+      tagKeyObj.tag_name = this.tagValue
+      tagKeyObj.article_title = this.header
+      this.tagArray.push(tagKeyObj)
     },
     handleSubmit: function() {
       let vue = this
-      let tagsTmp = vue.tagArray.join(',')
       vue
         .$http({
           method: 'post',
@@ -104,9 +107,7 @@ export default {
             title: vue.header,
             author: vue.author,
             content: vue.contentHtml,
-            createTime: vue.createTime,
-            tags: tagsTmp,
-            publish: '1'
+            tagName: vue.tagArray
           }
         })
         .then(function(response) {
@@ -119,7 +120,6 @@ export default {
     },
     handleUpdate: function() {
       let vue = this
-      let tagsTmp = vue.tagArray.join(',')
       vue
         .$http({
           method: 'post',
@@ -129,8 +129,7 @@ export default {
             title: vue.header,
             author: vue.author,
             content: vue.contentHtml,
-            createTime: vue.createTime,
-            tags: tagsTmp
+            tagName: vue.tagArray
           }
         })
         .then(function(response) {

@@ -12,7 +12,7 @@
             color="red"
             v-for="(item,index) in timelineList"
           >
-            <p class="time">{{ item.showTime }}</p>
+            <p class="time">{{ item.update_time }}</p>
             <p class="content">{{ item.title }}</p>
           </TimelineItem>
         </Timeline>更多内容请搜索……
