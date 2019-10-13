@@ -16,8 +16,9 @@
           <Button @click="getClass" ghost type="info">博文分类</Button>
         </div>
         <Input
-          @click="searchArcticle('searchContent')"
+          @on-search="searchArcticle('searchContent')"
           class="input"
+          clearable
           placeholder="输入搜索内容"
           search
           v-model="searchContent"
@@ -26,7 +27,7 @@
     </div>
     <div class="blogPageContainer">
       <div class="leftContainer">
-        <articleGroup></articleGroup>
+        <articleGroup :searchList="searchList" ref="articleGroup"></articleGroup>
       </div>
       <div class="rightContainer">
         <timeLine></timeLine>
@@ -45,7 +46,8 @@ export default {
       articleGroup: 'articleGroup',
       timeLine: 'timeLine',
       peopleCount: '4700',
-      searchContent: ''
+      searchContent: '',
+      searchList: []
     }
   },
   components: {
@@ -60,7 +62,21 @@ export default {
       this.$router.push('/classPage')
     },
     searchArcticle: function(searchContent) {
-      console.log(searchContent)
+      let vue = this
+      vue
+        .$http({
+          method: 'get',
+          url: '/api/someArticles',
+          params: {
+            key: vue.searchContent
+          }
+        })
+        .then(function(response) {
+          vue.searchList = response.data.list
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
     },
     // 什么时候获取访客
     getVisitorMessage: function() {

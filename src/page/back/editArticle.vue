@@ -93,6 +93,7 @@ export default {
     },
     getKey: function() {
       let tagKeyObj = {}
+      console.log(this.tagValue)
       tagKeyObj.tag_name = this.tagValue
       tagKeyObj.article_title = this.header
       this.tagArray.push(tagKeyObj)
@@ -112,7 +113,7 @@ export default {
         })
         .then(function(response) {
           vue.$Message.success('发布成功')
-          vue.$router.push('/index')
+          // vue.$router.push('/index')
         })
         .catch(function(error) {
           console.log(error)

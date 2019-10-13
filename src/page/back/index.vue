@@ -158,7 +158,7 @@ export default {
         })
         .then(function(response) {
           vue.$Message.success('删除成功')
-          vue.getArticle()
+          // vue.getArticle()
         })
         .catch(function(error) {
           console.log(error)

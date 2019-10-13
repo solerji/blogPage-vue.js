@@ -19,6 +19,9 @@
 <script>
 export default {
   name: 'articleGroup',
+  props: {
+    searchList: Array
+  },
   data() {
     return {
       articleList: [],
@@ -27,6 +30,13 @@ export default {
   },
   mounted() {
     this.getArticles()
+    console.log(22, this.searchList)
+  },
+  watch: {
+    searchList(newVal, oldVal) {
+      console.log(2323, newVal)
+      this.articleList = newVal
+    }
   },
   methods: {
     getOneArticle: function(item) {
