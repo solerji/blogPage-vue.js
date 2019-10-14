@@ -91,7 +91,6 @@ export default {
         })
         .then(function(response) {
           vue.timelineList = response.data.list
-          // console.log(vue.articleList)
         })
         .catch(function(error) {
           console.log(error)

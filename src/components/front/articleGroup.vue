@@ -10,9 +10,7 @@
       v-for="(item,index) in articleList"
     >
       <span slot="title" style="font-weight: 500;color: grey;">{{ item.title }}</span>
-      <!-- <div class="articleContent"> -->
       <span>{{ item.content }}</span>
-      <!-- </div> -->
     </Card>
   </div>
 </template>
@@ -30,18 +28,15 @@ export default {
   },
   mounted() {
     this.getArticles()
-    console.log(22, this.searchList)
   },
   watch: {
     searchList(newVal, oldVal) {
-      console.log(2323, newVal)
       this.articleList = newVal
     }
   },
   methods: {
     getOneArticle: function(item) {
       let vue = this
-      console.log(item.aid)
       vue.$http
         .get('/api/article', {
           params: {
@@ -50,12 +45,10 @@ export default {
         })
         .then(function(response) {
           let articleContent = response.data
-          // vue.$router.push('/contentPage')
           vue.$router.push({
             name: 'contentPage',
             params: { articleContent }
           })
-          // console.log(vue.articleContent)
         })
         .catch(function(error) {
           console.log(error)

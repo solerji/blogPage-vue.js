@@ -2,27 +2,29 @@
   <!-- 文章内容页面 -->
   <div class="contentPage">
     <div class="contentMain">
-      <div class="contentTitle">{{ checkedArticle.title }}</div>
+      <div class="contentTitle">{{ checkedArticle.article.title }}</div>
       <div class="otherMessage">
         <span class="author">
-          <Tag color="cyan" type="border">{{ checkedArticle.author }}</Tag>
+          <Tag color="cyan" type="border">{{ checkedArticle.article.author }}</Tag>
         </span>
-        <span class="time">{{ checkedArticle.update_time }}</span>
+        <span class="time">{{ checkedArticle.article.update_time }}</span>
         <span class="tags">
-          <Tag :key="item" color="cyan" v-for="item in tags">{{item}}</Tag>
+          <Tag :key="item.tag_name" color="cyan" v-for="item in tags">{{ item.tag_name }}</Tag>
         </span>
       </div>
-      <Divider class="headDivider" orientation="left">Left Text</Divider>
+      <Divider class="headDivider" orientation="left">正文部分</Divider>
       <div class="contentMarkdown">
         <div class="contentMarkdownMain">
-          <div class="content">{{ checkedArticle.content }}</div>
+          <div class="content">{{ checkedArticle.article.content }}</div>
         </div>
         <div class="contentMarkdownLeft">47297483</div>
         <div class="contentMarkdownRight">428934830</div>
       </div>
     </div>
     <div class="contentFooter">
-      <Divider class="footDivider" orientation="right">Right Text</Divider>
+      <Divider class="footDivider" orientation="right">
+        <Button @click="getBack">返回首页</Button>
+      </Divider>
       <div class="pageClass"></div>
       <!-- 留言功能待开放 -->
       <!-- <div class="comment"></div> -->
@@ -32,11 +34,15 @@
         <Icon size="28" type="ios-cafe" />
       </div>
       <div class="begMoney">
-        <div class="wechat"></div>
-        <div class="alipay"></div>
+        <img height="100px" src="../../assets/images/wechat.jpg" width="100px" />
+        <img height="100px" src="../../assets/images/alipay.jpg" width="100px" />
       </div>
       <div class="noteWrapper">
-        <div class="note">版权声明</div>
+        <div class="note">
+          <h2>版权声明</h2>
+          <p>本文作者： Solerji</p>
+          <p>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</p>
+        </div>
       </div>
     </div>
   </div>
@@ -57,6 +63,11 @@ export default {
     getArticleContent: function() {
       let articleDetail = this.$route.params.articleContent
       this.checkedArticle = articleDetail
+      this.tags = articleDetail.tags
+      console.log(7777, this.checkedArticle)
+    },
+    getBack: function() {
+      this.$router.push('/blogPage')
     }
   }
 }
@@ -84,38 +95,28 @@ export default {
   flex-direction: row
   top: 50%
   left: 50%
-  transform: translate(50%, 50%)
-  padding-top: 2%
+  transform: translate(45%, 50%)
 
 .milktea
   top: 50%
   left: 50%
-  transform: translate(57%, 50%)
+  transform: translate(50%, 50%)
   padding-top: 2%
 
 .word
   top: 50%
   left: 50%
-  transform: translate(47%, 50%)
+  transform: translate(42%, 50%)
   padding-top: 2%
   font-size: 20px
 
-.wechat
-  background-color: grey
-  width: 5rem
-  height: 5rem
-
-.alipay
-  background-color: grey
-  margin-left: 5%
-  width: 5rem
-  height: 5rem
-
 .note
   background-color: lightgrey
-  height: 10rem
+  border-radius: 16px
+  text-align: center
+  font-size: 14px
   width: 40rem
-  margin-left: 35%
+  margin-left: 34%
   margin-top: 7%
 
 .otherMessage
