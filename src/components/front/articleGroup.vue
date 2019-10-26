@@ -12,6 +12,17 @@
       <span slot="title" style="font-weight: 500;color: grey;">{{ item.title }}</span>
       <span>{{ item.content }}</span>
     </Card>
+    <div class="articlePage">
+      <Page
+        :current="current"
+        :page-size="pageSize"
+        :total="total"
+        @on-change="pageChange"
+        show-elevator
+        show-sizer
+        size="small"
+      />
+    </div>
   </div>
 </template>
 <script>
@@ -22,8 +33,44 @@ export default {
   },
   data() {
     return {
-      articleList: [],
-      articleContent: []
+      articleList: [
+        {
+          title: '2323',
+          content: '4444'
+        },
+        {
+          title: '2323',
+          content: '4444'
+        },
+        {
+          title: '2323',
+          content: '4444'
+        },
+        {
+          title: '2323',
+          content: '4444'
+        },
+        {
+          title: '2323',
+          content: '4444'
+        },
+        {
+          title: '2323',
+          content: '4444'
+        },
+        {
+          title: '2323',
+          content: '4444'
+        },
+        {
+          title: '2323',
+          content: '4444'
+        }
+      ],
+      articleContent: [],
+      total: 0,
+      pageSize: 8,
+      current: 1
     }
   },
   mounted() {
@@ -62,12 +109,16 @@ export default {
           url: '/api/articles'
         })
         .then(function(response) {
-          vue.articleList = response.data.list
+          // vue.articleList = response.data.list
+          vue.total = vue.articleList.length
           // console.log(vue.articleList)
         })
         .catch(function(error) {
           console.log(error)
         })
+    },
+    pageChange: function(page) {
+      console.log('yeshu', page)
     }
   }
 }
@@ -86,4 +137,8 @@ export default {
 
 .card:nth-child(3n+3)
   border-color: #aa5b71
+
+.articlePage
+  margin-left: 15rem
+  margin-top: 5%
 </style>

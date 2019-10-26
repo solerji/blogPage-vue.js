@@ -52,8 +52,27 @@ export default {
   name: 'contentPage',
   data() {
     return {
-      tags: [],
-      checkedArticle: []
+      tags: [
+        {
+          tag_name: '第一篇'
+        },
+        {
+          tag_name: '第二篇'
+        },
+        {
+          tag_name: '第三篇'
+        }
+      ],
+      checkedArticle: [
+        {
+          article: '232323'
+        }
+        // {
+        //   author: 'wqwqw',
+        //   title: 'ewew',
+        //   content: 'trtrtr'
+        // }
+      ]
     }
   },
   mounted() {

@@ -15,7 +15,7 @@
             <p class="time">{{ item.update_time }}</p>
             <p class="content">{{ item.title }}</p>
           </TimelineItem>
-        </Timeline>更多内容请搜索……
+        </Timeline>显示最近10条啦～更多内容请搜索……
       </div>
     </div>
   </div>
@@ -25,7 +25,57 @@ export default {
   name: 'timeLine',
   data() {
     return {
-      timelineList: []
+      timelineList: [
+        {
+          update_time: '2018年',
+          title: '我写了第一篇博客'
+        },
+        {
+          update_time: '2019年',
+          title: '我写了第二篇博客'
+        },
+        {
+          update_time: '2019年',
+          title: '我写了第三篇博客'
+        },
+        {
+          update_time: '2018年',
+          title: '我写了第一篇博客'
+        },
+        {
+          update_time: '2019年',
+          title: '我写了第二篇博客'
+        },
+        {
+          update_time: '2019年',
+          title: '我写了第三篇博客'
+        },
+        {
+          update_time: '2018年',
+          title: '我写了第一篇博客'
+        },
+        {
+          update_time: '2019年',
+          title: '我写了第二篇博客'
+        },
+        {
+          update_time: '2019年',
+          title: '我写了第三篇博客'
+        },
+        {
+          update_time: '2019年',
+          title: '我写了第二篇博客'
+        },
+        {
+          update_time: '2019年',
+          title: '我写了第三篇博客'
+        },
+        {
+          update_time: '2019年',
+          title: '我写了第三篇博客'
+        }
+      ],
+      count: ''
     }
   },
   mounted() {
@@ -41,9 +91,9 @@ export default {
         })
         .then(function(response) {
           vue.timelineList = response.data.list
-          console.log(vue.timelineList)
-          if (vue.timelineList.length >= 10) {
-            console.log('最多10条')
+          vue.count = response.data.list.length
+          if (vue.timelineList.length >= 9) {
+            vue.timelineList.splice(10, vue.timelineList.length)
           }
         })
         .catch(function(error) {

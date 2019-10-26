@@ -27,6 +27,17 @@
         </TimelineItem>
       </Timeline>
     </div>
+    <div class="classTool">
+      <Page
+        :current="current"
+        :page-size="pageSize"
+        :total="total"
+        @on-change="pageChange"
+        show-elevator
+        show-sizer
+        size="small"
+      />
+    </div>
     <div class="backBtn">
       <Button @click="getBack()" ghost shape="circle" type="info">回到主页</Button>
     </div>
@@ -53,8 +64,58 @@ export default {
           content: '我写了第三篇博客'
         }
       ],
-      timelineList: [],
-      tagList: []
+      timelineList: [
+        {
+          update_time: '2018年',
+          article_title: '我写了第一篇博客'
+        },
+        {
+          update_time: '2019年',
+          article_title: '我写了第二篇博客'
+        },
+        {
+          update_time: '2019年',
+          article_title: '我写了第三篇博客'
+        }
+      ],
+      tagList: [
+        {
+          tag_name: '第一篇'
+        },
+        {
+          tag_name: '第二篇'
+        },
+        {
+          tag_name: '第三篇'
+        },
+        {
+          tag_name: '第一篇'
+        },
+        {
+          tag_name: '第二篇'
+        },
+        {
+          tag_name: '第三篇'
+        },
+        {
+          tag_name: '第一篇'
+        },
+        {
+          tag_name: '第二篇'
+        },
+        {
+          tag_name: '第三篇'
+        },
+        {
+          tag_name: '第一篇'
+        },
+        {
+          tag_name: '第二篇'
+        },
+        {
+          tag_name: '第三篇'
+        }
+      ]
     }
   },
   mounted() {
@@ -137,7 +198,8 @@ export default {
   background-color: lightgrey
 
 .classBtn
-  margin-left: 2%
+  margin-left: 1rem
+  margin-top: 1rem
 
 .classBtn:nth-child(5n+1)
   border-color: #b7d28d
@@ -158,4 +220,7 @@ export default {
 .classBtn:nth-child(5n+5)
   border-color: #104E8B
   color: #104E8B
+
+.classTool
+  transform: translate(35%, 50%)
 </style>
