@@ -34,38 +34,38 @@ export default {
   data() {
     return {
       articleList: [
-        {
-          title: '2323',
-          content: '4444'
-        },
-        {
-          title: '2323',
-          content: '4444'
-        },
-        {
-          title: '2323',
-          content: '4444'
-        },
-        {
-          title: '2323',
-          content: '4444'
-        },
-        {
-          title: '2323',
-          content: '4444'
-        },
-        {
-          title: '2323',
-          content: '4444'
-        },
-        {
-          title: '2323',
-          content: '4444'
-        },
-        {
-          title: '2323',
-          content: '4444'
-        }
+        // {
+        //   title: '2323',
+        //   content: '4444'
+        // },
+        // {
+        //   title: '2323',
+        //   content: '4444'
+        // },
+        // {
+        //   title: '2323',
+        //   content: '4444'
+        // },
+        // {
+        //   title: '2323',
+        //   content: '4444'
+        // },
+        // {
+        //   title: '2323',
+        //   content: '4444'
+        // },
+        // {
+        //   title: '2323',
+        //   content: '4444'
+        // },
+        // {
+        //   title: '2323',
+        //   content: '4444'
+        // },
+        // {
+        //   title: '2323',
+        //   content: '4444'
+        // }
       ],
       articleContent: [],
       total: 0,
@@ -109,7 +109,7 @@ export default {
           url: '/api/articles'
         })
         .then(function(response) {
-          // vue.articleList = response.data.list
+          vue.articleList = response.data.list
           vue.total = vue.articleList.length
           // console.log(vue.articleList)
         })

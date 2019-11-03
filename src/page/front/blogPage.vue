@@ -63,6 +63,9 @@ export default {
     },
     searchArcticle: function(searchContent) {
       let vue = this
+      if (!searchContent) {
+        vue.$refs.articleGroup.getArticles()
+      }
       vue
         .$http({
           method: 'get',

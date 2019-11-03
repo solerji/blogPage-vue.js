@@ -26,54 +26,54 @@ export default {
   data() {
     return {
       timelineList: [
-        {
-          update_time: '2018年',
-          title: '我写了第一篇博客'
-        },
-        {
-          update_time: '2019年',
-          title: '我写了第二篇博客'
-        },
-        {
-          update_time: '2019年',
-          title: '我写了第三篇博客'
-        },
-        {
-          update_time: '2018年',
-          title: '我写了第一篇博客'
-        },
-        {
-          update_time: '2019年',
-          title: '我写了第二篇博客'
-        },
-        {
-          update_time: '2019年',
-          title: '我写了第三篇博客'
-        },
-        {
-          update_time: '2018年',
-          title: '我写了第一篇博客'
-        },
-        {
-          update_time: '2019年',
-          title: '我写了第二篇博客'
-        },
-        {
-          update_time: '2019年',
-          title: '我写了第三篇博客'
-        },
-        {
-          update_time: '2019年',
-          title: '我写了第二篇博客'
-        },
-        {
-          update_time: '2019年',
-          title: '我写了第三篇博客'
-        },
-        {
-          update_time: '2019年',
-          title: '我写了第三篇博客'
-        }
+        // {
+        //   update_time: '2018年',
+        //   title: '我写了第一篇博客'
+        // },
+        // {
+        //   update_time: '2019年',
+        //   title: '我写了第二篇博客'
+        // },
+        // {
+        //   update_time: '2019年',
+        //   title: '我写了第三篇博客'
+        // },
+        // {
+        //   update_time: '2018年',
+        //   title: '我写了第一篇博客'
+        // },
+        // {
+        //   update_time: '2019年',
+        //   title: '我写了第二篇博客'
+        // },
+        // {
+        //   update_time: '2019年',
+        //   title: '我写了第三篇博客'
+        // },
+        // {
+        //   update_time: '2018年',
+        //   title: '我写了第一篇博客'
+        // },
+        // {
+        //   update_time: '2019年',
+        //   title: '我写了第二篇博客'
+        // },
+        // {
+        //   update_time: '2019年',
+        //   title: '我写了第三篇博客'
+        // },
+        // {
+        //   update_time: '2019年',
+        //   title: '我写了第二篇博客'
+        // },
+        // {
+        //   update_time: '2019年',
+        //   title: '我写了第三篇博客'
+        // },
+        // {
+        //   update_time: '2019年',
+        //   title: '我写了第三篇博客'
+        // }
       ],
       count: ''
     }

@@ -53,20 +53,20 @@ export default {
   data() {
     return {
       tags: [
-        {
-          tag_name: '第一篇'
-        },
-        {
-          tag_name: '第二篇'
-        },
-        {
-          tag_name: '第三篇'
-        }
+        // {
+        //   tag_name: '第一篇'
+        // },
+        // {
+        //   tag_name: '第二篇'
+        // },
+        // {
+        //   tag_name: '第三篇'
+        // }
       ],
       checkedArticle: [
-        {
-          article: '232323'
-        }
+        // {
+        //   article: '232323'
+        // }
         // {
         //   author: 'wqwqw',
         //   title: 'ewew',
@@ -83,7 +83,7 @@ export default {
       let articleDetail = this.$route.params.articleContent
       this.checkedArticle = articleDetail
       this.tags = articleDetail.tags
-      console.log(7777, this.checkedArticle)
+      // console.log(7777, this.checkedArticle)
     },
     getBack: function() {
       this.$router.push('/blogPage')

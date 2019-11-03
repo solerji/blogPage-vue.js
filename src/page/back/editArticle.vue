@@ -10,14 +10,13 @@
       </span>
       <span class="editArticleTag">
         <Tag
-          :key="item.tag_name"
-          :name="item.tag_name"
+          :key="item"
           @on-close="handleClose"
           closable
           color="error"
           type="dot"
           v-for="item in tagArray"
-        >{{ item.tag_name }}</Tag>
+        >{{ item }}</Tag>
         <Poptip trigger="focus">
           <Input
             @on-enter="getKey"
@@ -61,20 +60,19 @@ export default {
       header: '',
       author: '',
       content: '',
-      // createTime: '',
       tags: '',
       contentHtml: '',
       updateAid: '',
       tagArray: [],
-      tagValue: ''
+      tagValue: '',
+      tagLable: []
     }
   },
   computed: {
     formatTags() {
       if (this.tagValue === '') return '请输入标签'
       function parseNumber(str) {
-        const re = /(?=(?!)(d{3})+$)/g
-        return str.replace(re, ',')
+        return str
       }
       return parseNumber(this.tagValue)
     }
@@ -89,14 +87,21 @@ export default {
       this.author = numberGet.article.author
       this.value = numberGet.article.content
       this.updateAid = numberGet.article.aid
-      this.tagArray = numberGet.tags
+      numberGet.tags.forEach(tagGroup => {
+        this.tagArray.push(tagGroup.tag_name)
+      })
+      console.log(this.tagArray)
     },
     getKey: function() {
-      let tagKeyObj = {}
-      console.log(this.tagValue)
-      tagKeyObj.tag_name = this.tagValue
-      tagKeyObj.article_title = this.header
-      this.tagArray.push(tagKeyObj)
+      let tagTmps = this.tagValue
+      let tagTmp = []
+      tagTmp.push(tagTmps)
+      for (var i = 0; i < tagTmp.length; i++) {
+        if (this.tagArray.indexOf(tagTmp[i]) == -1) {
+          this.tagArray.push(tagTmp[i])
+        }
+      }
+      console.log(this.tagArray)
     },
     handleSubmit: function() {
       let vue = this
@@ -112,6 +117,7 @@ export default {
           }
         })
         .then(function(response) {
+          debugger
           vue.$Message.success('发布成功')
           // vue.$router.push('/index')
         })

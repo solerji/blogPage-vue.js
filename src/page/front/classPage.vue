@@ -13,7 +13,11 @@
         v-for="(item,index) in tagList"
       >{{item.tag_name}}</Button>
     </div>
-    <Divider class="classDivider" orientation="left">共有{{timelineList.length}}篇日志</Divider>
+    <Divider
+      class="classDivider"
+      orientation="left"
+      v-if="timelineList.length>0"
+    >共有{{timelineList.length}}篇日志</Divider>
     <div class="filterClass">
       <Timeline>
         <TimelineItem
@@ -36,6 +40,7 @@
         show-elevator
         show-sizer
         size="small"
+        v-if="timelineList.length>0"
       />
     </div>
     <div class="backBtn">
@@ -51,75 +56,82 @@ export default {
     return {
       searchCount: '3',
       arrTimeLine: [
-        {
-          time: '2018年',
-          content: '我写了第一篇博客'
-        },
-        {
-          time: '2019年',
-          content: '我写了第二篇博客'
-        },
-        {
-          time: '2019年',
-          content: '我写了第三篇博客'
-        }
+        // {
+        //   time: '2018年',
+        //   content: '我写了第一篇博客'
+        // },
+        // {
+        //   time: '2019年',
+        //   content: '我写了第二篇博客'
+        // },
+        // {
+        //   time: '2019年',
+        //   content: '我写了第三篇博客'
+        // }
       ],
       timelineList: [
-        {
-          update_time: '2018年',
-          article_title: '我写了第一篇博客'
-        },
-        {
-          update_time: '2019年',
-          article_title: '我写了第二篇博客'
-        },
-        {
-          update_time: '2019年',
-          article_title: '我写了第三篇博客'
-        }
+        // {
+        //   update_time: '2018年',
+        //   article_title: '我写了第一篇博客'
+        // },
+        // {
+        //   update_time: '2019年',
+        //   article_title: '我写了第二篇博客'
+        // },
+        // {
+        //   update_time: '2019年',
+        //   article_title: '我写了第三篇博客'
+        // }
       ],
       tagList: [
-        {
-          tag_name: '第一篇'
-        },
-        {
-          tag_name: '第二篇'
-        },
-        {
-          tag_name: '第三篇'
-        },
-        {
-          tag_name: '第一篇'
-        },
-        {
-          tag_name: '第二篇'
-        },
-        {
-          tag_name: '第三篇'
-        },
-        {
-          tag_name: '第一篇'
-        },
-        {
-          tag_name: '第二篇'
-        },
-        {
-          tag_name: '第三篇'
-        },
-        {
-          tag_name: '第一篇'
-        },
-        {
-          tag_name: '第二篇'
-        },
-        {
-          tag_name: '第三篇'
-        }
-      ]
+        // {
+        //   tag_name: '第一篇'
+        // },
+        // {
+        //   tag_name: '第二篇'
+        // },
+        // {
+        //   tag_name: '第三篇'
+        // },
+        // {
+        //   tag_name: '第一篇'
+        // },
+        // {
+        //   tag_name: '第二篇'
+        // },
+        // {
+        //   tag_name: '第三篇'
+        // },
+        // {
+        //   tag_name: '第一篇'
+        // },
+        // {
+        //   tag_name: '第二篇'
+        // },
+        // {
+        //   tag_name: '第三篇'
+        // },
+        // {
+        //   tag_name: '第一篇'
+        // },
+        // {
+        //   tag_name: '第二篇'
+        // },
+        // {
+        //   tag_name: '第三篇'
+        // }
+      ],
+      pageSize: 5,
+      current: 1,
+      total: 0
     }
   },
   mounted() {
     this.getTags()
+    this.$nextTick(() => {
+      console.log(888, this.tagList)
+      // this.getTagsAndTimeline(this.tagList[0])
+    })
   },
   methods: {
     getBack: function() {
@@ -141,7 +153,6 @@ export default {
     },
     getTagsAndTimeline: function(item) {
       let vue = this
-      console.log(item.tag_name)
       vue
         .$http({
           method: 'post',
@@ -156,7 +167,8 @@ export default {
         .catch(function(error) {
           console.log(error)
         })
-    }
+    },
+    pageChange() {}
   }
 }
 </script>
@@ -178,18 +190,13 @@ export default {
   margin-top: 5%
   top: 40%
   left: 40%
-  transform: translate(-40%, -40%)
+  transform: translate(-35%, -40%)
 
 .filterClass
-  position: relative
-  width: 60%
-  margin-top: 10%
-  top: 50%
-  left: 50%
-  transform: translate(-50%, -50%)
+  transform: translate(35%, 0)
 
 .backBtn
-  margin-left: 70%
+  margin-left: 80%
   margin-bottom: 5%
 
 .classFooter
@@ -222,5 +229,5 @@ export default {
   color: #104E8B
 
 .classTool
-  transform: translate(35%, 50%)
+  transform: translate(30%, 50%)
 </style>

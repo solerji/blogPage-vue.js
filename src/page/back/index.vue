@@ -15,6 +15,7 @@
           :data="articleList"
           :show-header="false"
           @on-row-click="getOneArticle"
+          height="500"
           highlight-row
           ref="articleTable"
         >
@@ -45,7 +46,7 @@
             </span>
             <span class="time">{{ articleContent.update_time }}</span>
             <span class="tags">
-              <Tag :key="item" color="cyan" v-for="item in tagsArray">{{item.tag_name}}</Tag>
+              <Tag :key="item.tag_name" color="cyan" v-for="item in tagsArray">{{item.tag_name}}</Tag>
             </span>
           </div>
           <Divider />
@@ -83,6 +84,10 @@ export default {
   },
   mounted() {
     this.getArticle()
+    console.log(this.articleList[0])
+    // if (this.articleList) {
+    //   this.getOneArticle(this.articleList[0])
+    // }
   },
   methods: {
     addArticle: function() {
@@ -109,6 +114,7 @@ export default {
         })
     },
     getOneArticle: function(index) {
+      console.log(index)
       let vue = this
       vue.delAid = index.aid
       vue.$http
