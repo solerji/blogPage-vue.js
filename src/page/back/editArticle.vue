@@ -42,7 +42,7 @@
       </span>-->
     </div>
     <div class="editArticleMain">
-      <mavon-editor @change="contentChange" v-model="value" />
+      <mavon-editor :scrollStyle="true" @change="contentChange" v-model="value" />
     </div>
     <div class="editArticleFooter">
       <Button @click="exit()" class="exit" ghost type="primary">返回</Button>
@@ -62,6 +62,7 @@ export default {
       content: '',
       tags: '',
       contentHtml: '',
+      content: '',
       updateAid: '',
       tagArray: [],
       tagValue: '',
@@ -85,7 +86,7 @@ export default {
       var numberGet = this.$route.params.articleUpdateContent
       this.header = numberGet.article.title
       this.author = numberGet.article.author
-      this.value = numberGet.article.content
+      this.value = numberGet.article.show_content
       this.updateAid = numberGet.article.aid
       numberGet.tags.forEach(tagGroup => {
         this.tagArray.push(tagGroup.tag_name)
@@ -113,13 +114,15 @@ export default {
             title: vue.header,
             author: vue.author,
             content: vue.contentHtml,
+            showContent: vue.content,
             tagName: vue.tagArray
           }
         })
         .then(function(response) {
-          debugger
-          vue.$Message.success('发布成功')
-          // vue.$router.push('/index')
+          if (response.data.code == 0) {
+            vue.$Message.success('发布成功')
+            vue.$router.push('/index')
+          }
         })
         .catch(function(error) {
           console.log(error)
@@ -136,24 +139,24 @@ export default {
             title: vue.header,
             author: vue.author,
             content: vue.contentHtml,
+            showContent: vue.content,
             tagName: vue.tagArray
           }
         })
         .then(function(response) {
-          console.log(response)
-          vue.$Message.success('更新成功')
-          vue.$router.push('/index')
+          console.log(response.data.code)
+          if (response.data.code == 0) {
+            vue.$Message.success('更新成功')
+            vue.$router.push('/index')
+          }
         })
         .catch(function(error) {
           console.log(error)
         })
     },
     contentChange: function(value, render) {
-      // 文字内容
-      // console.log(123, value)
-      // html解析
-      // console.log(render)
       this.contentHtml = render
+      this.content = value
     },
     handleClose(event, name) {
       const index = this.tagArray.indexOf(name)

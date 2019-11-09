@@ -50,7 +50,7 @@
             </span>
           </div>
           <Divider />
-          <div class="content">{{ articleContent.content }}</div>
+          <div class="content" v-html="articleContent.content">{{ articleContent.content }}</div>
         </div>
       </div>
     </div>
@@ -108,6 +108,7 @@ export default {
         })
         .then(function(response) {
           vue.articleList = response.data.list
+          console.log(2323, vue.articleList)
         })
         .catch(function(error) {
           console.log(error)
@@ -163,8 +164,10 @@ export default {
           }
         })
         .then(function(response) {
-          vue.$Message.success('删除成功')
-          // vue.getArticle()
+          if (response.code == 0) {
+            vue.$Message.success('删除成功')
+            vue.getArticle()
+          }
         })
         .catch(function(error) {
           console.log(error)

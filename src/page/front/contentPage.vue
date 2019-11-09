@@ -15,7 +15,10 @@
       <Divider class="headDivider" orientation="left">正文部分</Divider>
       <div class="contentMarkdown">
         <div class="contentMarkdownMain">
-          <div class="content">{{ checkedArticle.article.content }}</div>
+          <div
+            class="content"
+            v-html="checkedArticle.article.content"
+          >{{ checkedArticle.article.content }}</div>
         </div>
         <div class="contentMarkdownLeft">47297483</div>
         <div class="contentMarkdownRight">428934830</div>

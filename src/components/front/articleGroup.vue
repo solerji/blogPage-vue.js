@@ -9,8 +9,8 @@
       dis-hover
       v-for="(item,index) in articleList"
     >
-      <span slot="title" style="font-weight: 500;color: grey;">{{ item.title }}</span>
-      <span>{{ item.content }}</span>
+      <div slot="title" style="font-weight: 500;color: grey;">{{ item.title }}</div>
+      <div v-html="item.show_content">{{ item.show_content }}</div>
     </Card>
     <div class="articlePage">
       <Page
