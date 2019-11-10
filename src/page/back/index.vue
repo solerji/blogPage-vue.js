@@ -180,11 +180,13 @@ export default {
 }
 </script>
 <style lang="stylus"  scoped>
+.index
+  background: url('~@/assets/images/bg1.jpg')
+  background-size: cover
+  background-repeat: no-repeat
+
 .indexHeader
   height: 100px
-  // background: url('~@/assets/images/header.png')
-  // background-size: cover
-  // background-repeat: no-repeat
   width: 100%
   height: 10em
   opacity: 0.5

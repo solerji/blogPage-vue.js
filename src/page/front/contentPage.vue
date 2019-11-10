@@ -95,6 +95,10 @@ export default {
 }
 </script>
 <style lang="stylus"  scoped>
+// .contentMain
+// background: url('~@/assets/images/bg1.jpg')
+// background-size: cover
+// background-repeat: no-repeat
 .contentTitle
   position: absolute
   margin: auto

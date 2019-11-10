@@ -16,8 +16,10 @@
       <Page
         :current="current"
         :page-size="pageSize"
+        :page-size-opts="opts"
         :total="total"
         @on-change="pageChange"
+        @on-page-size-change="pageSizeChange"
         show-elevator
         show-sizer
         size="small"
@@ -33,48 +35,17 @@ export default {
   },
   data() {
     return {
-      articleList: [
-        // {
-        //   title: '2323',
-        //   content: '4444'
-        // },
-        // {
-        //   title: '2323',
-        //   content: '4444'
-        // },
-        // {
-        //   title: '2323',
-        //   content: '4444'
-        // },
-        // {
-        //   title: '2323',
-        //   content: '4444'
-        // },
-        // {
-        //   title: '2323',
-        //   content: '4444'
-        // },
-        // {
-        //   title: '2323',
-        //   content: '4444'
-        // },
-        // {
-        //   title: '2323',
-        //   content: '4444'
-        // },
-        // {
-        //   title: '2323',
-        //   content: '4444'
-        // }
-      ],
+      articleList: [],
       articleContent: [],
       total: 0,
-      pageSize: 8,
-      current: 1
+      pageSize: 2,
+      current: 1,
+      opts: [4, 6, 8, 10]
     }
   },
   mounted() {
-    this.getArticles()
+    // this.getArticles()
+    this.pageChange(1)
   },
   watch: {
     searchList(newVal, oldVal) {
@@ -111,14 +82,32 @@ export default {
         .then(function(response) {
           vue.articleList = response.data.list
           vue.total = vue.articleList.length
-          // console.log(vue.articleList)
         })
         .catch(function(error) {
           console.log(error)
         })
     },
     pageChange: function(page) {
-      console.log('yeshu', page)
+      let vue = this
+      vue
+        .$http({
+          method: 'post',
+          url: '/api/getPage',
+          data: {
+            currentPage: page,
+            pageIndex: vue.pageSize
+          }
+        })
+        .then(function(response) {
+          vue.articleList = response.data.list
+          vue.total = vue.articleList.length
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+    },
+    pageSizeChange: function() {
+      console.log('改变', this.pageSize)
     }
   }
 }

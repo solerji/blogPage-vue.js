@@ -177,6 +177,9 @@ export default {
 .editArticle
   display: flex
   flex-direction: column
+  background: url('~@/assets/images/bg1.jpg')
+  background-size: cover
+  background-repeat: no-repeat
 
 .editArticleHeader
   height: 20%

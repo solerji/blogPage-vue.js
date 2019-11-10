@@ -107,6 +107,9 @@ export default {
 
 .blogPageHeader
   width: 100%
+  background: url('~@/assets/images/bg1.jpg')
+  background-size: cover
+  background-repeat: no-repeat
 
 .blogPageFooter
   width: 100%

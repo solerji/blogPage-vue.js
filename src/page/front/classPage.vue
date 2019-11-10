@@ -35,8 +35,10 @@
       <Page
         :current="current"
         :page-size="pageSize"
+        :page-size-opts="opts"
         :total="total"
-        @on-change="pageChange"
+        @on-change="classPageChange"
+        @on-page-size-change="pageSizeChange"
         show-elevator
         show-sizer
         size="small"
@@ -55,83 +57,22 @@ export default {
   data() {
     return {
       searchCount: '3',
-      arrTimeLine: [
-        // {
-        //   time: '2018年',
-        //   content: '我写了第一篇博客'
-        // },
-        // {
-        //   time: '2019年',
-        //   content: '我写了第二篇博客'
-        // },
-        // {
-        //   time: '2019年',
-        //   content: '我写了第三篇博客'
-        // }
-      ],
-      timelineList: [
-        // {
-        //   update_time: '2018年',
-        //   article_title: '我写了第一篇博客'
-        // },
-        // {
-        //   update_time: '2019年',
-        //   article_title: '我写了第二篇博客'
-        // },
-        // {
-        //   update_time: '2019年',
-        //   article_title: '我写了第三篇博客'
-        // }
-      ],
-      tagList: [
-        // {
-        //   tag_name: '第一篇'
-        // },
-        // {
-        //   tag_name: '第二篇'
-        // },
-        // {
-        //   tag_name: '第三篇'
-        // },
-        // {
-        //   tag_name: '第一篇'
-        // },
-        // {
-        //   tag_name: '第二篇'
-        // },
-        // {
-        //   tag_name: '第三篇'
-        // },
-        // {
-        //   tag_name: '第一篇'
-        // },
-        // {
-        //   tag_name: '第二篇'
-        // },
-        // {
-        //   tag_name: '第三篇'
-        // },
-        // {
-        //   tag_name: '第一篇'
-        // },
-        // {
-        //   tag_name: '第二篇'
-        // },
-        // {
-        //   tag_name: '第三篇'
-        // }
-      ],
-      pageSize: 5,
+      arrTimeLine: [],
+      timelineList: [],
+      tagList: [],
+      pageSize: 4,
       current: 1,
-      total: 0
+      total: 100,
+      opts: [4, 6, 8, 10],
+      itemName: ''
     }
   },
   mounted() {
     this.getTags()
-    this.$nextTick(() => {
-      console.log(888, this.tagList)
-      // this.getTagsAndTimeline(this.tagList[0])
-    })
+    // this.$nextTick(() => {
+    //   console.log(888, this.tagList)
+    //   // this.getTagsAndTimeline(this.tagList[0])
+    // })
   },
   methods: {
     getBack: function() {
@@ -153,6 +94,7 @@ export default {
     },
     getTagsAndTimeline: function(item) {
       let vue = this
+      vue.itemName = item.tag_name
       vue
         .$http({
           method: 'post',
@@ -168,7 +110,28 @@ export default {
           console.log(error)
         })
     },
-    pageChange() {}
+    classPageChange: function(page) {
+      console.log('yeshu', page)
+      let vue = this
+      vue
+        .$http({
+          method: 'post',
+          url: '/api/getTimeLine',
+          data: {
+            tagName: vue.itemName,
+            currentPage: page,
+            pageIndex: vue.pageSize
+          }
+        })
+        .then(function(response) {
+          console.log(45454, response)
+          vue.timelineList = response.data.list
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+    },
+    pageSizeChange: function() {}
   }
 }
 </script>
