@@ -60,10 +60,10 @@ export default {
       arrTimeLine: [],
       timelineList: [],
       tagList: [],
-      pageSize: 4,
+      pageSize: 2,
       current: 1,
-      total: 100,
-      opts: [4, 6, 8, 10],
+      total: 0,
+      opts: [2, 6, 8, 10],
       itemName: ''
     }
   },
@@ -95,6 +95,7 @@ export default {
     getTagsAndTimeline: function(item) {
       let vue = this
       vue.itemName = item.tag_name
+      this.classPageChange(1)
       vue
         .$http({
           method: 'post',
@@ -111,8 +112,8 @@ export default {
         })
     },
     classPageChange: function(page) {
-      console.log('yeshu', page)
       let vue = this
+      vue.current = page
       vue
         .$http({
           method: 'post',
@@ -124,14 +125,34 @@ export default {
           }
         })
         .then(function(response) {
-          console.log(45454, response)
           vue.timelineList = response.data.list
+          vue.total = response.data.count[0].count
         })
         .catch(function(error) {
           console.log(error)
         })
     },
-    pageSizeChange: function() {}
+    pageSizeChange: function(pagesize) {
+      let vue = this
+      vue.pageSize = pagesize
+      vue
+        .$http({
+          method: 'post',
+          url: '/api/getTimeLine',
+          data: {
+            tagName: vue.itemName,
+            currentPage: vue.current,
+            pageIndex: vue.pageSize
+          }
+        })
+        .then(function(response) {
+          vue.timelineList = response.data.list
+          vue.total = response.data.count[0].count
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+    }
   }
 }
 </script>

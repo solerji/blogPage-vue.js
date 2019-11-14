@@ -38,7 +38,7 @@ export default {
       articleList: [],
       articleContent: [],
       total: 0,
-      pageSize: 2,
+      pageSize: 6,
       current: 1,
       opts: [4, 6, 8, 10]
     }
@@ -89,25 +89,45 @@ export default {
     },
     pageChange: function(page) {
       let vue = this
+      vue.current = page
       vue
         .$http({
           method: 'post',
           url: '/api/getPage',
           data: {
-            currentPage: page,
+            currentPage: vue.current,
             pageIndex: vue.pageSize
           }
         })
         .then(function(response) {
           vue.articleList = response.data.list
-          vue.total = vue.articleList.length
+          vue.total = response.data.count[0].count
+          console.log(vue.total)
         })
         .catch(function(error) {
           console.log(error)
         })
     },
-    pageSizeChange: function() {
-      console.log('改变', this.pageSize)
+    pageSizeChange: function(pagesize) {
+      console.log(pagesize)
+      let vue = this
+      vue.pageSize = pagesize
+      vue
+        .$http({
+          method: 'post',
+          url: '/api/getPage',
+          data: {
+            currentPage: vue.current,
+            pageIndex: vue.pageSize
+          }
+        })
+        .then(function(response) {
+          vue.articleList = response.data.list
+          vue.total = response.data.count[0].count
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
     }
   }
 }
