@@ -3,7 +3,7 @@
   <div class="index">
     <div class="indexHeader"></div>
     <div class="newButton">
-      <Button @click="addArticle()" ghost type="info">新增文档</Button>
+      <Button @click="addArticle()" ghost isAdd="true" type="info">新增文档</Button>
     </div>
     <div class="indexMain">
       <div class="indexLeft">
@@ -26,6 +26,7 @@
             <Button
               @click="show(row)"
               ghost
+              isEdit="true"
               size="small"
               style="margin-right: 5px"
               type="primary"
@@ -74,6 +75,8 @@ export default {
           align: 'center'
         }
       ],
+      isAdd: true,
+      isEdit: false,
       articleList: [],
       articleContent: [],
       delAid: '',
@@ -84,10 +87,6 @@ export default {
   },
   mounted() {
     this.getArticle()
-    console.log(this.articleList[0])
-    // if (this.articleList) {
-    //   this.getOneArticle(this.articleList[0])
-    // }
   },
   methods: {
     addArticle: function() {
@@ -95,7 +94,6 @@ export default {
       vue.$router.push('./editArticle')
     },
     remove(index) {
-      console.log(index)
       let vue = this
       vue.modal = true
     },
@@ -107,34 +105,19 @@ export default {
           url: '/api/articles'
         })
         .then(function(response) {
-          vue.articleList = response.data.list
-          console.log(2323, vue.articleList)
-        })
-        .catch(function(error) {
-          console.log(error)
-        })
-    },
-    getOneArticle: function(index) {
-      console.log(index)
-      let vue = this
-      vue.delAid = index.aid
-      vue.$http
-        .get('/api/article', {
-          params: {
-            aid: index.aid
+          if (response.data.code == 0) {
+            vue.articleList = response.data.list
+            // 请求列表时默认请求第一行
+            vue.getOneArticle(vue.articleList[0], 1)
           }
         })
-        .then(function(response) {
-          vue.articleContent = response.data.article
-          vue.tagsArray = response.data.tags
-        })
         .catch(function(error) {
           console.log(error)
         })
     },
-    show(row) {
+    getOneArticle: function(row, index) {
       let vue = this
-      console.log(row.aid)
+      vue.delAid = row.aid
       vue.$http
         .get('/api/article', {
           params: {
@@ -142,11 +125,35 @@ export default {
           }
         })
         .then(function(response) {
-          let articleUpdateContent = response.data
-          vue.$router.push({
-            name: 'editArticle',
-            params: { articleUpdateContent }
-          })
+          if (response.data.code == 0) {
+            vue.articleContent = response.data.article
+            vue.tagsArray = response.data.tags
+          }
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+    },
+    show(row) {
+      let vue = this
+      vue.$http
+        .get('/api/article', {
+          params: {
+            aid: row.aid
+          }
+        })
+        .then(function(response) {
+          if (response.data.code == 0) {
+            let articleUpdateContent = response.data
+            vue.isEdit = true
+            vue.isAdd = false
+            let isEditStatus = vue.isEdit
+            let isAddStatus = vue.isAdd
+            vue.$router.push({
+              name: 'editArticle',
+              params: { articleUpdateContent, isEditStatus, isAddStatus }
+            })
+          }
         })
         .catch(function(error) {
           console.log(error)
@@ -164,7 +171,7 @@ export default {
           }
         })
         .then(function(response) {
-          if (response.code == 0) {
+          if (response.data.code == 0) {
             vue.$Message.success('删除成功')
             vue.getArticle()
           }
@@ -211,10 +218,6 @@ export default {
   margin-bottom: 2%
 
 .title
-  position: absolute
-  margin: auto
-  top: 10%
-  left: 50%
   font-size: 25px
   height: 30px
   font-weight: bold
@@ -225,12 +228,10 @@ export default {
 
 .content
   top: 2%
+  overflow: auto
 
-.otherMessage
-  padding-left: 40%
-
-.author, .time, .tags
-  padding-left: 5%
+.time, .tags
+  padding-left: 2%
 
 .listHeaderStyle
   margin-left: 2%

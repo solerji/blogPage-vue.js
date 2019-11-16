@@ -183,11 +183,6 @@ export default {
   margin-left: 80%
   margin-bottom: 5%
 
-.classFooter
-  width: 100%
-  height: 200px
-  background-color: lightgrey
-
 .classBtn
   margin-left: 1rem
   margin-top: 1rem

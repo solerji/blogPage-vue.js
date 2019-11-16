@@ -55,27 +55,8 @@ export default {
   name: 'contentPage',
   data() {
     return {
-      tags: [
-        // {
-        //   tag_name: '第一篇'
-        // },
-        // {
-        //   tag_name: '第二篇'
-        // },
-        // {
-        //   tag_name: '第三篇'
-        // }
-      ],
-      checkedArticle: [
-        // {
-        //   article: '232323'
-        // }
-        // {
-        //   author: 'wqwqw',
-        //   title: 'ewew',
-        //   content: 'trtrtr'
-        // }
-      ]
+      tags: [],
+      checkedArticle: []
     }
   },
   mounted() {
@@ -86,7 +67,6 @@ export default {
       let articleDetail = this.$route.params.articleContent
       this.checkedArticle = articleDetail
       this.tags = articleDetail.tags
-      // console.log(7777, this.checkedArticle)
     },
     getBack: function() {
       this.$router.push('/blogPage')
@@ -95,10 +75,6 @@ export default {
 }
 </script>
 <style lang="stylus"  scoped>
-// .contentMain
-// background: url('~@/assets/images/bg1.jpg')
-// background-size: cover
-// background-repeat: no-repeat
 .contentTitle
   position: absolute
   margin: auto

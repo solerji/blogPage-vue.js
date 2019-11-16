@@ -101,21 +101,11 @@ export default {
 }
 </script>
 <style lang="stylus"  scoped>
-.blogPage
-  // background-color #0A0A0A
-  // opacity 0.8
-
 .blogPageHeader
   width: 100%
   background: url('~@/assets/images/bg1.jpg')
   background-size: cover
   background-repeat: no-repeat
-
-.blogPageFooter
-  width: 100%
-  height: 200px
-  margin-top: 80%
-  background-color: lightgrey
 
 .blogPageBar
   position: relative

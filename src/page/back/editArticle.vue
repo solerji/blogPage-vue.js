@@ -46,8 +46,20 @@
     </div>
     <div class="editArticleFooter">
       <Button @click="exit()" class="exit" ghost type="primary">返回</Button>
-      <Button @click="handleSubmit()" class="saveContent" ghost type="primary">发布</Button>
-      <Button @click="handleUpdate()" class="upadteContent" ghost type="primary">提交更新内容</Button>
+      <Button
+        @click="handleSubmit()"
+        class="saveContent"
+        ghost
+        type="primary"
+        v-if="isAdd === true"
+      >发布</Button>
+      <Button
+        @click="handleUpdate()"
+        class="upadteContent"
+        ghost
+        type="primary"
+        v-if="isEdit===true"
+      >提交更新内容</Button>
     </div>
   </div>
 </template>
@@ -66,7 +78,9 @@ export default {
       updateAid: '',
       tagArray: [],
       tagValue: '',
-      tagLable: []
+      tagLable: [],
+      isAdd: true,
+      isEdit: ''
     }
   },
   computed: {
@@ -91,7 +105,9 @@ export default {
       numberGet.tags.forEach(tagGroup => {
         this.tagArray.push(tagGroup.tag_name)
       })
-      console.log(this.tagArray)
+      this.isEdit = this.$route.params.isEditStatus
+      this.isAdd = this.$route.params.isAddStatus
+      console.log(565, this.$route.params.isAddStatus)
     },
     getKey: function() {
       let tagTmps = this.tagValue
@@ -169,6 +185,8 @@ export default {
     // },
     exit() {
       this.$router.push('/index')
+      this.isEdit = false
+      this.isAdd = true
     }
   }
 }
