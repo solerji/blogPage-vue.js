@@ -3,57 +3,84 @@
   <div class="index">
     <div class="indexHeader"></div>
     <div class="newButton">
-      <Button @click="addArticle()" ghost isAdd="true" type="info">新增文档</Button>
+      <Row type="flex">
+        <Col :lg="{ span: 5, offset: 20 }" :md="{ span: 5, offset: 22 }" :sm="{ span: 5, offset: 22 }" :xs="{ span: 5, offset: 18 }">
+          <Button @click="addArticle()" ghost isAdd="true" type="info">新增文档</Button>
+        </Col>
+      </Row>
     </div>
     <div class="indexMain">
-      <div class="indexLeft">
-        <div>
-          <Tag class="listHeaderStyle" color="volcano" type="border">文章列表</Tag>
-        </div>
-        <Table
-          :columns="columns"
-          :data="articleList"
-          :show-header="false"
-          @on-row-click="getOneArticle"
-          height="500"
-          highlight-row
-          ref="articleTable"
-        >
-          <template slot="title" slot-scope="{ row }">
-            <strong>{{ row.title }}</strong>
-          </template>
-          <template slot="action" slot-scope="{ row, index }">
-            <Button
-              @click="show(row)"
-              ghost
-              isEdit="true"
-              size="small"
-              style="margin-right: 5px"
-              type="primary"
-            >编辑</Button>
-            <Button @click="remove(index)" ghost size="small" type="error">删除</Button>
-          </template>
-        </Table>
-        <Modal @on-cancel="cancel" @on-ok="ok" title="警告" v-model="modal">
-          <p>确认删除？</p>
-        </Modal>
-      </div>
-      <div class="indexRight">
-        <div class="articleContent">
-          <div class="title">{{ articleContent.title }}</div>
-          <div class="otherMessage">
-            <span class="author">
-              <Tag color="cyan" type="border">{{ articleContent.author }}</Tag>
-            </span>
-            <span class="time">{{ articleContent.update_time }}</span>
-            <span class="tags">
-              <Tag :key="item.tag_name" color="cyan" v-for="item in tagsArray">{{item.tag_name}}</Tag>
-            </span>
+      <Row justify="start" type="flex">
+        <Col :lg="6" :md="6" :sm="5" :xs="10">
+          <div>
+            <Tag class="listHeaderStyle" color="volcano" type="border">文章列表</Tag>
           </div>
-          <Divider />
-          <div class="content" v-html="articleContent.content">{{ articleContent.content }}</div>
-        </div>
-      </div>
+          <div class="indexLeft">
+            <Table
+              :columns="columns"
+              :data="articleList"
+              :height="height"
+              :show-header="false"
+              @on-row-click="getOneArticle"
+              highlight-row
+              ref="articleTable"
+              style="overflow-x:hidden;"
+            >
+              <template slot="title" slot-scope="{ row }">
+                <strong>{{ row.title }}</strong>
+              </template>
+              <template slot="action" slot-scope="{ row, index }">
+                <Button
+                  @click="show(row)"
+                  ghost
+                  isEdit="true"
+                  size="small"
+                  style="margin-right: 5px"
+                  type="primary"
+                >编辑</Button>
+                <Button @click="remove(index)" ghost size="small" type="error">删除</Button>
+              </template>
+            </Table>
+            <Modal @on-cancel="cancel" @on-ok="ok" title="警告" v-model="modal">
+              <p>确认删除？</p>
+            </Modal>
+          </div>
+        </Col>
+        <Col :lg="18" :md="18" :sm="19" :xs="10">
+          <div class="indexRight">
+            <div class="articleContent">
+              <Row>
+                <div class="title">{{ articleContent.title }}</div>
+              </Row>
+              <Row>
+                <div class="otherMessage">
+                  <Col :lg="4" :md="2" :sm="2" :xs="24">
+                    <span class="author">
+                      <Tag color="cyan" type="border">{{ articleContent.author }}</Tag>
+                    </span>
+                  </Col>
+                  <Col :lg="6" :md="4" :sm="4" :xs="24">
+                    <span class="time">{{ articleContent.update_time }}</span>
+                  </Col>
+                  <Col :lg="14" :md="18" :sm="18" :xs="24">
+                    <span class="tags">
+                      <Tag
+                        :key="item.tag_name"
+                        color="cyan"
+                        v-for="item in tagsArray"
+                      >{{item.tag_name}}</Tag>
+                    </span>
+                  </Col>
+                </div>
+              </Row>
+              <Divider />
+              <div :style="height">
+                <div class="content" v-html="articleContent.content">{{ articleContent.content }}</div>
+              </div>
+            </div>
+          </div>
+        </Col>
+      </Row>
     </div>
     <div class="indexFooter"></div>
   </div>
@@ -82,13 +109,24 @@ export default {
       delAid: '',
       articleUpdateContent: [],
       tagsArray: [],
-      modal: false
+      modal: false,
+      height: window.innerHeight - 220
     }
+  },
+  created() {
+    window.addEventListener('resize', this.getHeight)
+    this.getHeight()
   },
   mounted() {
     this.getArticle()
   },
+  destroyed() {
+    window.removeEventListener('resize', this.getHeight)
+  },
   methods: {
+    getHeight: function() {
+      this.height = window.innerHeight - 220
+    },
     addArticle: function() {
       let vue = this
       vue.$router.push('./editArticle')
@@ -187,16 +225,12 @@ export default {
 }
 </script>
 <style lang="stylus"  scoped>
-.index
+.indexHeader
   background: url('~@/assets/images/bg1.jpg')
   background-size: cover
   background-repeat: no-repeat
-
-.indexHeader
-  height: 100px
   width: 100%
-  height: 10em
-  opacity: 0.5
+  height: 10rem
 
 .indexMain
   width: 100%
@@ -204,17 +238,15 @@ export default {
 .indexLeft
   position: relative
   float: left
-  width: 30%
+  width: 100%
 
 .indexRight
   position: relative
   float: left
   width: 70%
   padding-left: 2%
-  // background-color lightgrey
 
 .newButton
-  margin-left: 90%
   margin-bottom: 2%
 
 .title
@@ -227,8 +259,8 @@ export default {
   margin-top: 8%
 
 .content
-  top: 2%
   overflow: auto
+  height: 100%
 
 .time, .tags
   padding-left: 2%

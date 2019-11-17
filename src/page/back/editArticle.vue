@@ -2,6 +2,7 @@
   <!-- 文章编辑页面 -->
   <div class="editArticle">
     <div class="editArticleHeader">
+      <Row justify="start" type="flex" :gutter="3">
       <span class="editArticleTitle">
         <Input placeholder="请输入标题" style="width: 300px" v-model="header" />
       </span>
@@ -28,6 +29,7 @@
           <div slot="content">{{ formatTags }}</div>
         </Poptip>
       </span>
+      </Row>
       <!-- 用户自行设定发布时间 -->
       <!-- <span class="editArticleTime">
         <DatePicker
@@ -42,9 +44,15 @@
       </span>-->
     </div>
     <div class="editArticleMain">
-      <mavon-editor :scrollStyle="true" @change="contentChange" v-model="value" />
+      <mavon-editor
+        :scrollStyle="true"
+        @change="contentChange"
+        style="height:43rem;"
+        v-model="value"
+      />
     </div>
     <div class="editArticleFooter">
+      <Row>
       <Button @click="exit()" class="exit" ghost type="primary">返回</Button>
       <Button
         @click="handleSubmit()"
@@ -60,6 +68,7 @@
         type="primary"
         v-if="isEdit===true"
       >提交更新内容</Button>
+      </Row>
     </div>
   </div>
 </template>
@@ -97,17 +106,18 @@ export default {
   },
   methods: {
     numberGet() {
-      var numberGet = this.$route.params.articleUpdateContent
-      this.header = numberGet.article.title
-      this.author = numberGet.article.author
-      this.value = numberGet.article.show_content
-      this.updateAid = numberGet.article.aid
-      numberGet.tags.forEach(tagGroup => {
-        this.tagArray.push(tagGroup.tag_name)
-      })
       this.isEdit = this.$route.params.isEditStatus
-      this.isAdd = this.$route.params.isAddStatus
-      console.log(565, this.$route.params.isAddStatus)
+      if (this.isEdit === true) {
+        var numberGet = this.$route.params.articleUpdateContent
+        this.header = numberGet.article.title
+        this.author = numberGet.article.author
+        this.value = numberGet.article.show_content
+        this.updateAid = numberGet.article.aid
+        numberGet.tags.forEach(tagGroup => {
+          this.tagArray.push(tagGroup.tag_name)
+        })
+        this.isAdd = this.$route.params.isAddStatus
+      }
     },
     getKey: function() {
       let tagTmps = this.tagValue
@@ -118,7 +128,6 @@ export default {
           this.tagArray.push(tagTmp[i])
         }
       }
-      console.log(this.tagArray)
     },
     handleSubmit: function() {
       let vue = this
@@ -232,6 +241,4 @@ export default {
     width: 100%
     height: 22rem
 
-.exit, .saveContent, .upadteContent
-  margin-left: 10px
 </style>

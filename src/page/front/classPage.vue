@@ -60,23 +60,22 @@ export default {
       arrTimeLine: [],
       timelineList: [],
       tagList: [],
-      pageSize: 2,
+      pageSize: 4,
       current: 1,
       total: 0,
-      opts: [2, 6, 8, 10],
+      opts: [4, 6, 8],
       itemName: ''
     }
   },
   mounted() {
     this.getTags()
-    // this.$nextTick(() => {
-    //   console.log(888, this.tagList)
-    //   // this.getTagsAndTimeline(this.tagList[0])
-    // })
   },
   methods: {
     getBack: function() {
       this.$router.push('/blogPage')
+      this.pageSize = 0
+      this.total = 0
+      this.opts = []
     },
     getTags: function() {
       let vue = this

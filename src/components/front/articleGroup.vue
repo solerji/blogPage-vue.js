@@ -40,7 +40,7 @@ export default {
       total: 0,
       pageSize: 6,
       current: 1,
-      opts: [4, 6, 8, 10]
+      opts: [4, 6, 8]
     }
   },
   mounted() {
