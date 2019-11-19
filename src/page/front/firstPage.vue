@@ -3,10 +3,10 @@
   <div class="firstPage">
     <div class="buttonStyle animated slideInDown">
       <span>
-        <Button @click.stop="getManage()" class="button" ghost>manage blog</Button>
+        <Button @click.stop="getManage()" ghost>manage blog</Button>
       </span>
       <div>
-        <Button @click.stop="getSecond()">enter my blog</Button>
+        <Button @click.stop="getSecond()" ghost>enter my blog</Button>
       </div>
     </div>
     <vue-particle-line>
@@ -14,12 +14,13 @@
         <!-- <div class="box animated slideInDown"></div> -->
       </div>
       <div class="firstPageContainer">
-        <div class="wordStyle">
-          <p class="box animated shake">Welcome to Solerji's Blog!</p>
-          <!-- <div>
-            <Button @click.native="getSecond()">enter my blog</Button>
-          </div>-->
-        </div>
+        <Row>
+          <div class="wordStyle">
+            <Col :push="10" :span="6">
+              <p class="box animated shake">Welcome to Solerji's Blog!</p>
+            </Col>
+          </div>
+        </Row>
       </div>
       <div class="firstPageFooter animated slideInUp"></div>
     </vue-particle-line>
@@ -47,29 +48,27 @@ export default {
 
 .firstPageHeader
   width: 100%
-  height: 90px
+  height: 10rem
   background-color: lightgrey
 
 .firstPageFooter
   position: relative
   width: 100%
-  height: 200px
+  height: 15rem
   background-color: lightgrey
 
 .firstPageContainer
   position: relative
   width: 100%
-  height: 300px
+  height: 27rem
   background-color: white
 
 .wordStyle
-  margin-top: 10%
-  position: relative
+  margin-top: 15%
   vertical-align: middle
   align-content: center
-  margin-left: 30%
   color: black
-  font-size: 40px
+  font-size: 1rem
 
 .buttonStyle
   background-color: lightgrey

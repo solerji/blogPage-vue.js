@@ -2,26 +2,35 @@
   <!-- 后台登录页面 -->
   <div class="loginIn">
     <div class="loginMain">
-      <div class="title">博客后台登录</div>
-      <div class="loginForm">
-        <Form
-          :model="formInline"
-          :rules="ruleInline"
-          @keydown.enter.native.prevent="login('formInline')"
-          label-position="top"
-          ref="formInline"
-        >
-          <FormItem label="用户名" prop="name">
-            <Input class="input" placeholder="用户名" type="text" v-model="formInline.name" />
-          </FormItem>
-          <FormItem label="密码" prop="password">
-            <Input class="input" placeholder="密码" type="password" v-model="formInline.password" />
-          </FormItem>
-          <FormItem>
-            <Button @click="login('formInline')" ghost type="primary">登录</Button>
-          </FormItem>
-        </Form>
-      </div>
+      <Row>
+        <Col :push="9">
+          <div class="title">博客后台登录</div>
+          <div class="loginForm">
+            <Form
+              :model="formInline"
+              :rules="ruleInline"
+              @keydown.enter.native.prevent="login('formInline')"
+              label-position="top"
+              ref="formInline"
+            >
+              <FormItem label="用户名" prop="name">
+                <Input class="input" placeholder="用户名" type="text" v-model="formInline.name" />
+              </FormItem>
+              <FormItem label="密码" prop="password">
+                <Input
+                  class="input"
+                  placeholder="密码"
+                  type="password"
+                  v-model="formInline.password"
+                />
+              </FormItem>
+              <FormItem>
+                <Button @click="login('formInline')" ghost type="primary">登录</Button>
+              </FormItem>
+            </Form>
+          </div>
+        </Col>
+      </Row>
     </div>
   </div>
 </template>
@@ -80,9 +89,7 @@ export default {
   height: 100%
 
 .loginMain
-  position: relative
   z-index: 100
-  margin-left: 40%
   padding-top: 20%
 
 .title

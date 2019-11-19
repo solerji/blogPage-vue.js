@@ -1,18 +1,24 @@
 <template>
   <!-- 博文分类模块 -->
   <div class="classPage">
-    <div class="classTitle">博文分类</div>
-    <div class="classGroup">
-      <Button
-        :item="index"
-        :key="item.tag_name"
-        @click="getTagsAndTimeline(item)"
-        class="classBtn"
-        ghost
-        shape="circle"
-        v-for="(item,index) in tagList"
-      >{{item.tag_name}}</Button>
-    </div>
+    <Row>
+      <Col :push="10">
+        <div class="classTitle">博文分类</div>
+      </Col>
+      <Col :push="1">
+        <div class="classGroup">
+          <Button
+            :item="index"
+            :key="item.tag_name"
+            @click="getTagsAndTimeline(item)"
+            class="classBtn"
+            ghost
+            shape="circle"
+            v-for="(item,index) in tagList"
+          >{{item.tag_name}}</Button>
+        </div>
+      </Col>
+    </Row>
     <Divider
       class="classDivider"
       orientation="left"
@@ -31,23 +37,29 @@
         </TimelineItem>
       </Timeline>
     </div>
-    <div class="classTool">
-      <Page
-        :current="current"
-        :page-size="pageSize"
-        :page-size-opts="opts"
-        :total="total"
-        @on-change="classPageChange"
-        @on-page-size-change="pageSizeChange"
-        show-elevator
-        show-sizer
-        size="small"
-        v-if="timelineList.length>0"
-      />
-    </div>
-    <div class="backBtn">
-      <Button @click="getBack()" ghost shape="circle" type="info">回到主页</Button>
-    </div>
+    <Row :gutter="10">
+      <Col>
+        <div class="classTool">
+          <Page
+            :current="current"
+            :page-size="pageSize"
+            :page-size-opts="opts"
+            :total="total"
+            @on-change="classPageChange"
+            @on-page-size-change="pageSizeChange"
+            show-elevator
+            show-sizer
+            size="small"
+            v-if="timelineList.length>0"
+          />
+        </div>
+      </Col>
+      <Col>
+        <div class="backBtn">
+          <Button @click="getBack()" ghost shape="circle" type="info">回到主页</Button>
+        </div>
+      </Col>
+    </Row>
     <div class="classFooter"></div>
   </div>
 </template>
@@ -164,23 +176,21 @@ export default {
   font-size: 20px
   position: relative
   margin-top: 5%
-  margin-left: 50%
   font-weight: bold
 
-.classGroup
-  width: 60%
-  position: relative
-  margin-top: 5%
-  top: 40%
-  left: 40%
-  transform: translate(-35%, -40%)
-
+// .classGroup
+// width: 60%
+// position: relative
+// margin-top: 5%
+// top: 40%
+// left: 40%
+// transform: translate(-35%, -40%)
 .filterClass
   transform: translate(35%, 0)
 
 .backBtn
   margin-left: 80%
-  margin-bottom: 5%
+  margin-top: 7%
 
 .classBtn
   margin-left: 1rem
@@ -207,5 +217,5 @@ export default {
   color: #104E8B
 
 .classTool
-  transform: translate(30%, 50%)
+  transform: translate(25%, 50%)
 </style>

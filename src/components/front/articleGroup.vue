@@ -135,7 +135,7 @@ export default {
 <style lang="stylus"  scoped>
 .articleGroup, .card
   width: 90%
-  margin-left: 15%
+  margin-left: 10%
   margin-top: 5%
 
 .card:nth-child(3n+1)
@@ -148,6 +148,6 @@ export default {
   border-color: #aa5b71
 
 .articlePage
-  margin-left: 15rem
+  margin-left: 13%
   margin-top: 5%
 </style>

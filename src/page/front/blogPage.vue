@@ -2,11 +2,17 @@
   <div class="blogPage">
     <div class="blogPageHeader">
       <!-- 人数统计，埋点设置 -->
-      <div class="link">
-        <Icon size="24" type="logo-github" />
-        <Icon size="28" type="ios-mail" />
-      </div>
-      <div class="totalNumber">共有{{ peopleCount }}人来过</div>
+      <Row>
+        <Col>
+          <div class="link">
+            <Icon size="24" type="logo-github" />
+            <Icon size="28" type="ios-mail" />
+          </div>
+        </Col>
+        <Col>
+          <div class="totalNumber">共有{{ peopleCount }}人来过</div>
+        </Col>
+      </Row>
       <div class="head">
         <Avatar icon="ios-person" size="large" />
       </div>
@@ -115,13 +121,13 @@ export default {
 .leftContainer
   position: relative
   float: left
-  width: 60%
+  width: 55%
 
 .rightContainer
   position: absolute
   float: left
   margin-top: 10%
-  margin-left: 80%
+  margin-left: 62%
   width: 40%
 
 .blogPageContainer
@@ -146,7 +152,7 @@ export default {
 .totalNumber
   width: 100px
   height: 30px
-  margin-left: 81%
+  margin-left: 74%
   font-size: 13px
   font-weight: bold
 
@@ -154,6 +160,6 @@ export default {
   width: 100px
   height: 30px
   margin-top: 2%
-  margin-left: 82%
+  margin-left: 75%
 </style>
 

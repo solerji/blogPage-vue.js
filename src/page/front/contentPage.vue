@@ -1,52 +1,86 @@
 <template>
   <!-- 文章内容页面 -->
   <div class="contentPage">
-    <div class="contentMain">
-      <div class="contentTitle">{{ checkedArticle.article.title }}</div>
-      <div class="otherMessage">
-        <span class="author">
-          <Tag color="cyan" type="border">{{ checkedArticle.article.author }}</Tag>
-        </span>
-        <span class="time">{{ checkedArticle.article.update_time }}</span>
-        <span class="tags">
-          <Tag :key="item.tag_name" color="cyan" v-for="item in tags">{{ item.tag_name }}</Tag>
-        </span>
-      </div>
-      <Divider class="headDivider" orientation="left">正文部分</Divider>
-      <div class="contentMarkdown">
-        <div class="contentMarkdownMain">
-          <div
-            class="content"
-            v-html="checkedArticle.article.content"
-          >{{ checkedArticle.article.content }}</div>
+    <Row>
+      <div class="contentMain">
+        <Col :push="12">
+          <div class="contentTitle">{{ checkedArticle.article.title }}</div>
+        </Col>
+        <Row>
+          <div class="otherMessage">
+            <Col :span="4">
+              <span class="author">
+                <Tag color="cyan" type="border">{{ checkedArticle.article.author }}</Tag>
+              </span>
+            </Col>
+            <Col :span="6">
+              <span class="time">{{ checkedArticle.article.update_time }}</span>
+            </Col>
+            <Col :span="14">
+              <span class="tags">
+                <Tag :key="item.tag_name" color="cyan" v-for="item in tags">{{ item.tag_name }}</Tag>
+              </span>
+            </Col>
+          </div>
+        </Row>
+        <Divider class="headDivider" orientation="left">正文部分</Divider>
+        <div class="contentMarkdown">
+          <Row>
+            <div class="contentMarkdownMain">
+              <div
+                class="content"
+                v-html="checkedArticle.article.content"
+              >{{ checkedArticle.article.content }}</div>
+            </div>
+          </Row>
+          <div class="contentMarkdownLeft">47297483</div>
+          <div class="contentMarkdownRight">428934830</div>
         </div>
-        <div class="contentMarkdownLeft">47297483</div>
-        <div class="contentMarkdownRight">428934830</div>
       </div>
-    </div>
+    </Row>
     <div class="contentFooter">
       <Divider class="footDivider" orientation="right">
         <Button @click="getBack">返回首页</Button>
       </Divider>
-      <div class="pageClass"></div>
-      <!-- 留言功能待开放 -->
-      <!-- <div class="comment"></div> -->
-      <!-- 上传图片作为打赏工具 -->
-      <div class="word">如果您喜欢，就请作者喝杯奶茶吧！</div>
-      <div class="milktea">
-        <Icon size="28" type="ios-cafe" />
-      </div>
-      <div class="begMoney">
-        <img height="100px" src="../../assets/images/wechat.jpg" width="100px" />
-        <img height="100px" src="../../assets/images/alipay.jpg" width="100px" />
-      </div>
-      <div class="noteWrapper">
-        <div class="note">
-          <h2>版权声明</h2>
-          <p>本文作者： Solerji</p>
-          <p>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</p>
-        </div>
-      </div>
+      <Row :gutter="16">
+        <div class="pageClass"></div>
+        <!-- 留言功能待开放 -->
+        <!-- <div class="comment"></div> -->
+        <!-- 上传图片作为打赏工具 -->
+        <Row>
+          <Col :push="9">
+            <div class="word">如果您喜欢，就请作者喝杯奶茶吧！</div>
+          </Col>
+        </Row>
+        <Row>
+          <div class="milktea">
+            <Col :push="11">
+              <Icon size="28" type="ios-cafe" />
+            </Col>
+          </div>
+        </Row>
+        <Row>
+          <div class="begMoney">
+            <Col :push="9" :span="12">
+              <img height="100px" src="../../assets/images/wechat.jpg" width="100px" />
+            </Col>
+            <Col :span="12">
+              <img height="100px" src="../../assets/images/alipay.jpg" width="100px" />
+            </Col>
+          </div>
+        </Row>
+        <Row>
+          <div class="noteWrapper">
+            <Col :push="6" :span="10">
+              <div class="note">
+                <h2>版权声明</h2>
+                <p>本文作者： Solerji</p>
+                <p>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</p>
+              </div>
+            </Col>
+          </div>
+        </Row>
+      </Row>
     </div>
   </div>
 </template>
@@ -76,13 +110,9 @@ export default {
 </script>
 <style lang="stylus"  scoped>
 .contentTitle
-  position: absolute
-  margin: auto
-  top: 10%
-  left: 50%
   font-size: 30px
   font-weight: bold
-  transform: translate(-10%, -50%)
+  margin-top: 5%
 
 .headDivider
   position: relative
@@ -92,24 +122,7 @@ export default {
   position: relative
   margin-top: 10%
 
-.begMoney
-  display: flex
-  flex-direction: row
-  top: 50%
-  left: 50%
-  transform: translate(45%, 50%)
-
-.milktea
-  top: 50%
-  left: 50%
-  transform: translate(50%, 50%)
-  padding-top: 2%
-
 .word
-  top: 50%
-  left: 50%
-  transform: translate(42%, 50%)
-  padding-top: 2%
   font-size: 20px
 
 .note
@@ -118,7 +131,6 @@ export default {
   text-align: center
   font-size: 14px
   width: 40rem
-  margin-left: 34%
   margin-top: 7%
 
 .otherMessage
