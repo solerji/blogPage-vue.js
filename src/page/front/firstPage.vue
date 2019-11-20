@@ -2,12 +2,18 @@
   <!-- 进入博客首页 -->
   <div class="firstPage">
     <div class="buttonStyle animated slideInDown">
-      <span>
-        <Button @click.stop="getManage()" ghost>manage blog</Button>
-      </span>
-      <div>
-        <Button @click.stop="getSecond()" ghost>enter my blog</Button>
-      </div>
+      <Row type="flex">
+        <Col :push="3" :span="2">
+          <span>
+            <Button @click.stop="getManage()" ghost>manage blog</Button>
+          </span>
+        </Col>
+        <Col :offset="15" :span="2">
+          <span>
+            <Button @click.stop="getSecond()" ghost>enter my blog</Button>
+          </span>
+        </Col>
+      </Row>
     </div>
     <vue-particle-line>
       <div class="firstPageHeader animated slideInDown">
@@ -16,7 +22,7 @@
       <div class="firstPageContainer">
         <Row>
           <div class="wordStyle">
-            <Col :push="10" :span="6">
+            <Col :push="9" :span="6">
               <p class="box animated shake">Welcome to Solerji's Blog!</p>
             </Col>
           </div>
@@ -68,7 +74,7 @@ export default {
   vertical-align: middle
   align-content: center
   color: black
-  font-size: 1rem
+  font-size: 2rem
 
 .buttonStyle
   background-color: lightgrey
