@@ -63,8 +63,9 @@ markdown编辑器：mavon-editor、
 后台部分：
 核心框架：node.js、
 express、
-数据库：mysql
-日志管理：log4j.js
+数据库：mysql、
+日志管理：log4j.js、
+代理： nginx
 
 
 ## Update log
