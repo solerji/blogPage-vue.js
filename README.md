@@ -51,7 +51,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 （未完善）
 
 ## 博客部署位置
-（未完善）
+www.solerji.top
 
 ## 相关技术及用到的库和插件
 前端部分：
@@ -64,6 +64,7 @@ markdown编辑器：mavon-editor、
 核心框架：node.js、
 express、
 数据库：mysql
+日志管理：log4j.js
 
 
 ## Update log
@@ -82,3 +83,7 @@ express、
 2019-09-05 update article delete interface
 
 2019-09-08 update timeline interface
+
+2019-10-01--2019-11-01 change system model and fix bug
+
+2019-11-26 Deployment system on the first time
