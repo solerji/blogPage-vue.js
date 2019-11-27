@@ -72,6 +72,10 @@ export default {
       if (!searchContent) {
         vue.$refs.articleGroup.getArticles()
       }
+      // vue.baseAxios.apifindAllAcceptDocsGet({
+      //   pageIndex: pageIndex,
+      //   pageSize: pageSize
+      // }).then(function (response) {
       vue
         .$http({
           method: 'get',

@@ -14,6 +14,7 @@ import 'mavon-editor/dist/css/index.css'
 // import './mock'
 import vueParticleLine from 'vue-particle-line'
 import 'vue-particle-line/dist/vue-particle-line.css'
+import baseAxios from './utils/api.js'
 
 Vue.use(iView)
 Vue.use(animated)
@@ -23,6 +24,7 @@ Vue.prototype.$axios = axios
 Vue.use(VueAwesomeSwiper /* { default global options } */)
 Vue.use(vueParticleLine)
 Vue.prototype.$http = axios
+Vue.prototype.baseAxios = baseAxios
 
 // Vue.prototype.$d3 = d3;
 // window.d3 = d3;

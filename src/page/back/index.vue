@@ -4,14 +4,19 @@
     <div class="indexHeader"></div>
     <div class="newButton">
       <Row type="flex">
-        <Col :lg="{ span: 5, offset: 20 }" :md="{ span: 5, offset: 22 }" :sm="{ span: 5, offset: 22 }" :xs="{ span: 5, offset: 18 }">
+        <Col
+          :lg="{ span: 5, offset: 20 }"
+          :md="{ span: 5, offset: 22 }"
+          :sm="{ span: 5, offset: 22 }"
+          :xs="{ span: 5, offset: 18 }"
+        >
           <Button @click="addArticle()" ghost isAdd="true" type="info">新增文档</Button>
         </Col>
       </Row>
     </div>
     <div class="indexMain">
       <Row justify="start" type="flex">
-        <Col :lg="6" :md="6" :sm="5" :xs="10">
+        <Col :lg="6" :md="6" :sm="7" :xs="10">
           <div>
             <Tag class="listHeaderStyle" color="volcano" type="border">文章列表</Tag>
           </div>
@@ -46,7 +51,7 @@
             </Modal>
           </div>
         </Col>
-        <Col :lg="18" :md="18" :sm="19" :xs="10">
+        <Col :lg="18" :md="18" :sm="17" :xs="14">
           <div class="indexRight">
             <div class="articleContent">
               <Row>
@@ -59,10 +64,20 @@
                       <Tag color="cyan" type="border">{{ articleContent.author }}</Tag>
                     </span>
                   </Col>
-                  <Col :lg="6" :md="4" :sm="4" :xs="24">
+                  <Col
+                    :lg="{ span: 6, offset: 2 }"
+                    :md="{ span: 4, offset: 2 }"
+                    :sm="{ span: 4, offset: 2 }"
+                    :xs="{ span: 24, offset: 2 }"
+                  >
                     <span class="time">{{ articleContent.update_time }}</span>
                   </Col>
-                  <Col :lg="14" :md="18" :sm="18" :xs="24">
+                  <Col
+                    :lg="{ span: 10, offset: 1 }"
+                    :md="{ span: 14, offset: 1 }"
+                    :sm="{ span: 14, offset: 1 }"
+                    :xs="{ span: 24, offset: 1 }"
+                  >
                     <span class="tags">
                       <Tag
                         :key="item.tag_name"
@@ -74,7 +89,7 @@
                 </div>
               </Row>
               <Divider />
-              <div :style="height">
+              <div>
                 <div class="content" v-html="articleContent.content">{{ articleContent.content }}</div>
               </div>
             </div>
@@ -110,12 +125,13 @@ export default {
       articleUpdateContent: [],
       tagsArray: [],
       modal: false,
-      height: window.innerHeight - 220
+      height: '100%'
     }
   },
   created() {
     window.addEventListener('resize', this.getHeight)
     this.getHeight()
+    console.log(this.contentHeight.height)
   },
   mounted() {
     this.getArticle()

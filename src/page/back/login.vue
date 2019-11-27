@@ -84,9 +84,12 @@ export default {
 .loginIn
   background: url('~@/assets/images/background.png')
   background-size: cover
-  background-repeat: repeat
+  background-repeat: no-repeat
+  background-position: center
   width: 100%
   height: 100%
+  min-height: 100vh
+  min-width: 100vh
 
 .loginMain
   z-index: 100
