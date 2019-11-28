@@ -116,7 +116,6 @@ export default {
 .otherMessage
   align: center
   height: 100%
-  overflow: auto
   margin-top: 2%
 
 .contentMarkdownMain
