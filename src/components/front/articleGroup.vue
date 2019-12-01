@@ -10,7 +10,11 @@
       v-for="(item,index) in articleList"
     >
       <div slot="title" style="font-weight: 500;color: grey;">{{ item.title }}</div>
-      <div v-html="item.show_content">{{ item.show_content }}</div>
+      <Row type="flex">
+        <Col>
+          <div class="cardContent">{{ item.content | ellipsis }}</div>
+        </Col>
+      </Row>
     </Card>
     <div class="articlePage">
       <Page
@@ -32,6 +36,22 @@ export default {
   name: 'articleGroup',
   props: {
     searchList: Array
+  },
+  // 最多显示250字
+  filters: {
+    ellipsis(value) {
+      if (!value) return ''
+      value = value
+        .replace(/<(style|script|iframe)[^>]*?>[\s\S]+?<\/\1\s*>/gi, '')
+        .replace(/<[^>]+?>/g, '')
+        .replace(/\s+/g, ' ')
+        .replace(/ /g, ' ')
+        .replace(/>/g, ' ')
+      if (value.length > 20) {
+        return value.slice(0, 250) + '...'
+      }
+      return value
+    }
   },
   data() {
     return {

@@ -125,13 +125,12 @@ export default {
       articleUpdateContent: [],
       tagsArray: [],
       modal: false,
-      height: '100%'
+      height: window.innerHeight - 220
     }
   },
   created() {
     window.addEventListener('resize', this.getHeight)
     this.getHeight()
-    console.log(this.contentHeight.height)
   },
   mounted() {
     this.getArticle()
@@ -215,7 +214,6 @@ export default {
     },
     ok() {
       let vue = this
-      console.log(vue.delAid)
       vue
         .$http({
           method: 'delete',

@@ -2,33 +2,33 @@
   <!-- 文章编辑页面 -->
   <div class="editArticle">
     <div class="editArticleHeader">
-      <Row justify="start" type="flex" :gutter="3">
-      <span class="editArticleTitle">
-        <Input placeholder="请输入标题" style="width: 300px" v-model="header" />
-      </span>
-      <span class="editArticleAuthor">
-        <Input placeholder="请输入作者名" style="width: 300px" v-model="author" />
-      </span>
-      <span class="editArticleTag">
-        <Tag
-          :key="item"
-          @on-close="handleClose"
-          closable
-          color="error"
-          type="dot"
-          v-for="item in tagArray"
-        >{{ item }}</Tag>
-        <Poptip trigger="focus">
-          <Input
-            @on-enter="getKey"
-            clearable
-            placeholder="请输入标签"
-            style="width: 120px"
-            v-model="tagValue"
-          />
-          <div slot="content">{{ formatTags }}</div>
-        </Poptip>
-      </span>
+      <Row :gutter="3" justify="start" type="flex">
+        <span class="editArticleTitle">
+          <Input placeholder="请输入标题" style="width: 300px" v-model="header" />
+        </span>
+        <span class="editArticleAuthor">
+          <Input placeholder="请输入作者名" style="width: 300px" v-model="author" />
+        </span>
+        <span class="editArticleTag">
+          <Tag
+            :key="item"
+            @on-close="handleClose"
+            closable
+            color="error"
+            type="dot"
+            v-for="item in tagArray"
+          >{{ item }}</Tag>
+          <Poptip trigger="focus">
+            <Input
+              @on-enter="getKey"
+              clearable
+              placeholder="请输入标签"
+              style="width: 120px"
+              v-model="tagValue"
+            />
+            <div slot="content">{{ formatTags }}</div>
+          </Poptip>
+        </span>
       </Row>
       <!-- 用户自行设定发布时间 -->
       <!-- <span class="editArticleTime">
@@ -53,21 +53,21 @@
     </div>
     <div class="editArticleFooter">
       <Row>
-      <Button @click="exit()" class="exit" ghost type="primary">返回</Button>
-      <Button
-        @click="handleSubmit()"
-        class="saveContent"
-        ghost
-        type="primary"
-        v-if="isAdd === true"
-      >发布</Button>
-      <Button
-        @click="handleUpdate()"
-        class="upadteContent"
-        ghost
-        type="primary"
-        v-if="isEdit===true"
-      >提交更新内容</Button>
+        <Button @click="exit()" class="exit" ghost type="primary">返回</Button>
+        <Button
+          @click="handleSubmit()"
+          class="saveContent"
+          ghost
+          type="primary"
+          v-if="isAdd === true"
+        >发布</Button>
+        <Button
+          @click="handleUpdate()"
+          class="upadteContent"
+          ghost
+          type="primary"
+          v-if="isEdit===true"
+        >提交更新内容</Button>
       </Row>
     </div>
   </div>
@@ -186,7 +186,6 @@ export default {
     handleClose(event, name) {
       const index = this.tagArray.indexOf(name)
       this.tagArray.splice(index, 1)
-      console.log(3, this.tagArray)
     },
     // changeDate(datetime) {
     //   this.createTime = datetime
@@ -240,5 +239,4 @@ export default {
   .editor
     width: 100%
     height: 22rem
-
 </style>
