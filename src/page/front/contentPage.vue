@@ -78,13 +78,26 @@ export default {
     this.getArticleContent()
   },
   methods: {
-    getArticleContent: function() {
-      let articleDetail = this.$route.params.articleContent
-      this.checkedArticle = articleDetail
-      this.tags = articleDetail.tags
-    },
     getBack: function() {
       this.$router.push('/blogPage')
+    },
+    getArticleContent: function() {
+      let vue = this
+      let aid = vue.$route.params.aid
+      vue.$http
+        .get('/api/article', {
+          params: {
+            aid: aid
+          }
+        })
+        .then(function(response) {
+          let articleContent = response.data
+          vue.checkedArticle = articleContent
+          vue.tags = articleContent.tags
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
     }
   }
 }

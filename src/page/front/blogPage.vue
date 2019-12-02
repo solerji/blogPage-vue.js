@@ -33,7 +33,7 @@
     </div>
     <div class="blogPageContainer">
       <div class="leftContainer">
-        <articleGroup :searchList="searchList" ref="articleGroup"></articleGroup>
+        <articleGroup :searchList="searchList" @aid="aid" ref="articleGroup"></articleGroup>
       </div>
       <div class="rightContainer">
         <timeLine></timeLine>

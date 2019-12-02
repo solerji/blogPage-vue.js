@@ -75,22 +75,10 @@ export default {
   methods: {
     getOneArticle: function(item) {
       let vue = this
-      vue.$http
-        .get('/api/article', {
-          params: {
-            aid: item.aid
-          }
-        })
-        .then(function(response) {
-          let articleContent = response.data
-          vue.$router.push({
-            name: 'contentPage',
-            params: { articleContent }
-          })
-        })
-        .catch(function(error) {
-          console.log(error)
-        })
+      vue.$router.push({
+        name: 'contentPage',
+        params: { aid: item.aid }
+      })
     },
     getArticles: function() {
       let vue = this

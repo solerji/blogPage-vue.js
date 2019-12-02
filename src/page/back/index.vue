@@ -189,28 +189,12 @@ export default {
     },
     show(row) {
       let vue = this
-      vue.$http
-        .get('/api/article', {
-          params: {
-            aid: row.aid
-          }
-        })
-        .then(function(response) {
-          if (response.data.code == 0) {
-            let articleUpdateContent = response.data
-            vue.isEdit = true
-            vue.isAdd = false
-            let isEditStatus = vue.isEdit
-            let isAddStatus = vue.isAdd
-            vue.$router.push({
-              name: 'editArticle',
-              params: { articleUpdateContent, isEditStatus, isAddStatus }
-            })
-          }
-        })
-        .catch(function(error) {
-          console.log(error)
-        })
+      vue.isEdit = true
+      vue.isAdd = false
+      vue.$router.push({
+        name: 'editArticle',
+        params: { aid: row.aid, isEdit: vue.isEdit, isAdd: vue.isAdd }
+      })
     },
     ok() {
       let vue = this

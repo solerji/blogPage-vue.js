@@ -101,23 +101,38 @@ export default {
       return parseNumber(this.tagValue)
     }
   },
-  mounted() {
+  created() {
     this.numberGet()
   },
   methods: {
     numberGet() {
-      this.isEdit = this.$route.params.isEditStatus
-      if (this.isEdit === true) {
-        var numberGet = this.$route.params.articleUpdateContent
-        this.header = numberGet.article.title
-        this.author = numberGet.article.author
-        this.value = numberGet.article.show_content
-        this.updateAid = numberGet.article.aid
-        numberGet.tags.forEach(tagGroup => {
-          this.tagArray.push(tagGroup.tag_name)
+      let vue = this
+      let aid = vue.$route.params.aid
+      vue.$http
+        .get('/api/article', {
+          params: {
+            aid: aid
+          }
         })
-        this.isAdd = this.$route.params.isAddStatus
-      }
+        .then(function(response) {
+          if (response.data.code == 0) {
+            let articleUpdateContent = response.data
+            vue.isAdd = vue.$route.params.isAdd
+            vue.isEdit = vue.$route.params.isEdit
+            if (vue.isEdit === true) {
+              vue.header = articleUpdateContent.article.title
+              vue.author = articleUpdateContent.article.author
+              vue.value = articleUpdateContent.article.show_content
+              vue.updateAid = articleUpdateContent.article.aid
+              articleUpdateContent.tags.forEach(tagGroup => {
+                vue.tagArray.push(tagGroup.tag_name)
+              })
+            }
+          }
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
     },
     getKey: function() {
       let tagTmps = this.tagValue
