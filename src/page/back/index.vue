@@ -144,7 +144,12 @@ export default {
     },
     addArticle: function() {
       let vue = this
-      vue.$router.push('./editArticle')
+      let aid = 0
+      // vue.$router.push('./editArticle')
+      vue.$router.push({
+        name: 'editArticle',
+        params: { aid: aid, isEdit: vue.isEdit, isAdd: vue.isAdd }
+      })
     },
     remove(index) {
       let vue = this

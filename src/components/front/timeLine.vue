@@ -25,56 +25,7 @@ export default {
   name: 'timeLine',
   data() {
     return {
-      timelineList: [
-        // {
-        //   update_time: '2018年',
-        //   title: '我写了第一篇博客'
-        // },
-        // {
-        //   update_time: '2019年',
-        //   title: '我写了第二篇博客'
-        // },
-        // {
-        //   update_time: '2019年',
-        //   title: '我写了第三篇博客'
-        // },
-        // {
-        //   update_time: '2018年',
-        //   title: '我写了第一篇博客'
-        // },
-        // {
-        //   update_time: '2019年',
-        //   title: '我写了第二篇博客'
-        // },
-        // {
-        //   update_time: '2019年',
-        //   title: '我写了第三篇博客'
-        // },
-        // {
-        //   update_time: '2018年',
-        //   title: '我写了第一篇博客'
-        // },
-        // {
-        //   update_time: '2019年',
-        //   title: '我写了第二篇博客'
-        // },
-        // {
-        //   update_time: '2019年',
-        //   title: '我写了第三篇博客'
-        // },
-        // {
-        //   update_time: '2019年',
-        //   title: '我写了第二篇博客'
-        // },
-        // {
-        //   update_time: '2019年',
-        //   title: '我写了第三篇博客'
-        // },
-        // {
-        //   update_time: '2019年',
-        //   title: '我写了第三篇博客'
-        // }
-      ],
+      timelineList: [],
       count: ''
     }
   },
@@ -107,6 +58,7 @@ export default {
 .time
   font-size: 14px
   font-weight: bold
+  max-width: 120px
 
 .timeLineMain
   margin-top: -15%
@@ -116,4 +68,5 @@ export default {
   padding-bottom: 5%
   font-size: 14px
   font-weight: bold
+  overflow: auto
 </style>

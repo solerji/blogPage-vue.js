@@ -2,16 +2,16 @@
   <!-- 文章内容页面 -->
   <div class="contentPage">
     <div class="contentMain">
-      <div class="contentTitle">{{ checkedArticle.article.title }}</div>
+      <div class="contentTitle">{{ name }}</div>
       <div class="otherMessage">
         <Row :gutter="11" align="middle" justify="center" type="flex">
           <Col>
             <span class="author">
-              <Tag color="cyan" type="border">{{ checkedArticle.article.author }}</Tag>
+              <Tag color="cyan" type="border">{{ author }}</Tag>
             </span>
           </Col>
           <Col>
-            <span class="time">{{ checkedArticle.article.update_time }}</span>
+            <span class="time">{{ updateTime }}</span>
           </Col>
           <Col>
             <span class="tags">
@@ -23,10 +23,7 @@
       <Divider class="headDivider" orientation="left">正文部分</Divider>
       <div class="contentMarkdown">
         <div class="contentMarkdownMain">
-          <div
-            class="content"
-            v-html="checkedArticle.article.content"
-          >{{ checkedArticle.article.content }}</div>
+          <div class="content" v-html="content">{{ content }}</div>
         </div>
       </div>
     </div>
@@ -71,7 +68,11 @@ export default {
   data() {
     return {
       tags: [],
-      checkedArticle: []
+      checkedArticle: [],
+      name: '',
+      author: '',
+      updateTime: '',
+      content: ''
     }
   },
   mounted() {
@@ -93,6 +94,10 @@ export default {
         .then(function(response) {
           let articleContent = response.data
           vue.checkedArticle = articleContent
+          vue.name = articleContent.article.title
+          vue.author = articleContent.article.author
+          vue.updateTime = articleContent.article.update_time
+          vue.content = articleContent.article.content
           vue.tags = articleContent.tags
         })
         .catch(function(error) {

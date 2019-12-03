@@ -36,6 +36,13 @@ Vue.prototype.baseAxios = baseAxios
 //   console.log(error)
 // })
 
+router.beforeEach((to, from, next) => {
+  if (to.meta.title) {
+    document.title = to.meta.title
+  }
+  next()
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

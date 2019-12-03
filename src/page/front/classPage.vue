@@ -2,22 +2,22 @@
   <!-- 博文分类模块 -->
   <div class="classPage">
     <Row>
-      <Col :push="10">
+      <i-Col :push="10">
         <div class="classTitle">博文分类</div>
-      </Col>
-      <Col :push="1">
+      </i-Col>
+      <i-Col :push="1">
         <div class="classGroup">
           <Button
             :item="index"
             :key="item.tag_name"
-            @click="getTagsAndTimeline(item)"
+            @click="getTagsAndTimeline(item.tag_name)"
             class="classBtn"
             ghost
             shape="circle"
             v-for="(item,index) in tagList"
           >{{item.tag_name}}</Button>
         </div>
-      </Col>
+      </i-Col>
     </Row>
     <Divider
       class="classDivider"
@@ -26,19 +26,14 @@
     >共有{{timelineList.length}}篇日志</Divider>
     <div class="filterClass">
       <Timeline>
-        <TimelineItem
-          :index="index"
-          :key="item.tag_name"
-          color="red"
-          v-for="(item,index) in timelineList"
-        >
+        <TimelineItem :key="item.tag_name" color="red" v-for="item in timelineList">
           <p class="time">{{ item.update_time }}</p>
           <p class="content">{{ item.article_title }}</p>
         </TimelineItem>
       </Timeline>
     </div>
     <Row :gutter="10">
-      <Col>
+      <i-Col>
         <div class="classTool">
           <Page
             :current="current"
@@ -53,12 +48,12 @@
             v-if="timelineList.length>0"
           />
         </div>
-      </Col>
-      <Col>
+      </i-Col>
+      <i-Col>
         <div class="backBtn">
           <Button @click="getBack()" ghost shape="circle" type="info">回到主页</Button>
         </div>
-      </Col>
+      </i-Col>
     </Row>
     <div class="classFooter"></div>
   </div>
@@ -104,15 +99,14 @@ export default {
         })
     },
     getTagsAndTimeline: function(item) {
+      console.log(item)
       let vue = this
-      vue.itemName = item.tag_name
-      this.classPageChange(1)
       vue
         .$http({
           method: 'post',
           url: '/api/tagsAndTime',
           data: {
-            tagName: item.tag_name
+            tagName: item
           }
         })
         .then(function(response) {

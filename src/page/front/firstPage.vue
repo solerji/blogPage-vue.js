@@ -3,16 +3,16 @@
   <div class="firstPage">
     <div class="buttonStyle animated slideInDown">
       <Row type="flex">
-        <Col :push="3" :span="2">
+        <i-Col :push="3" :span="2">
           <span>
             <Button @click.stop="getManage()" ghost>manage blog</Button>
           </span>
-        </Col>
-        <Col :offset="15" :span="2">
+        </i-Col>
+        <i-Col :offset="15" :span="2">
           <span>
             <Button @click.stop="getSecond()" ghost>enter my blog</Button>
           </span>
-        </Col>
+        </i-Col>
       </Row>
     </div>
     <vue-particle-line>
@@ -22,9 +22,9 @@
       <div class="firstPageContainer">
         <Row>
           <div class="wordStyle">
-            <Col :push="9" :span="6">
+            <i-Col :push="9" :span="6">
               <p class="box animated shake">Welcome to Solerji's Blog!</p>
-            </Col>
+            </i-Col>
           </div>
         </Row>
       </div>

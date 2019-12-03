@@ -3,18 +3,26 @@
     <div class="blogPageHeader">
       <!-- 人数统计，埋点设置 -->
       <Row>
-        <Col>
+        <i-Col>
           <div class="link">
-            <Icon size="24" type="logo-github" />
-            <Icon size="28" type="ios-mail" />
+            <a href="https://github.com/solerji">
+              <Icon size="24" type="logo-github" />
+            </a>
+            <a
+              href="mailto:liulu7039@163.com"
+              target="_blank"
+              title="E-Mail → mailto:liulu7039@163.com"
+            >
+              <Icon size="28" type="ios-mail" />
+            </a>
           </div>
-        </Col>
-        <Col>
+        </i-Col>
+        <!-- <i-Col>
           <div class="totalNumber">共有{{ peopleCount }}人来过</div>
-        </Col>
+        </i-Col>-->
       </Row>
       <div class="head">
-        <Avatar icon="ios-person" size="large" />
+        <Avatar size="large" style="background-color: #fd7d36">S</Avatar>
       </div>
       <div class="blogPageBar">
         <div class="ctlBtn">
@@ -33,7 +41,7 @@
     </div>
     <div class="blogPageContainer">
       <div class="leftContainer">
-        <articleGroup :searchList="searchList" @aid="aid" ref="articleGroup"></articleGroup>
+        <articleGroup :searchList="searchList" ref="articleGroup"></articleGroup>
       </div>
       <div class="rightContainer">
         <timeLine></timeLine>
@@ -163,7 +171,7 @@ export default {
 .link
   width: 100px
   height: 30px
-  margin-top: 2%
+  margin-top: 5%
   margin-left: 75%
 </style>
 

@@ -11,9 +11,9 @@
     >
       <div slot="title" style="font-weight: 500;color: grey;">{{ item.title }}</div>
       <Row type="flex">
-        <Col>
+        <i-Col :span="23">
           <div class="cardContent">{{ item.content | ellipsis }}</div>
-        </Col>
+        </i-Col>
       </Row>
     </Card>
     <div class="articlePage">
@@ -47,8 +47,8 @@ export default {
         .replace(/\s+/g, ' ')
         .replace(/ /g, ' ')
         .replace(/>/g, ' ')
-      if (value.length > 20) {
-        return value.slice(0, 250) + '...'
+      if (value.length > 10) {
+        return value.slice(0, 100) + '...'
       }
       return value
     }
@@ -110,7 +110,6 @@ export default {
         .then(function(response) {
           vue.articleList = response.data.list
           vue.total = response.data.count[0].count
-          console.log(vue.total)
         })
         .catch(function(error) {
           console.log(error)
@@ -158,4 +157,8 @@ export default {
 .articlePage
   margin-left: 13%
   margin-top: 5%
+
+.cardContent
+  width: 100%
+  height: 100%
 </style>

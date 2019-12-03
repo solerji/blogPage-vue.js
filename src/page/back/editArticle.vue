@@ -108,18 +108,18 @@ export default {
     numberGet() {
       let vue = this
       let aid = vue.$route.params.aid
-      vue.$http
-        .get('/api/article', {
-          params: {
-            aid: aid
-          }
-        })
-        .then(function(response) {
-          if (response.data.code == 0) {
-            let articleUpdateContent = response.data
-            vue.isAdd = vue.$route.params.isAdd
-            vue.isEdit = vue.$route.params.isEdit
-            if (vue.isEdit === true) {
+      if (aid !== 0) {
+        vue.$http
+          .get('/api/article', {
+            params: {
+              aid: aid
+            }
+          })
+          .then(function(response) {
+            if (response.data.code == 0) {
+              let articleUpdateContent = response.data
+              vue.isAdd = vue.$route.params.isAdd
+              vue.isEdit = true
               vue.header = articleUpdateContent.article.title
               vue.author = articleUpdateContent.article.author
               vue.value = articleUpdateContent.article.show_content
@@ -128,11 +128,11 @@ export default {
                 vue.tagArray.push(tagGroup.tag_name)
               })
             }
-          }
-        })
-        .catch(function(error) {
-          console.log(error)
-        })
+          })
+          .catch(function(error) {
+            console.log(error)
+          })
+      }
     },
     getKey: function() {
       let tagTmps = this.tagValue
