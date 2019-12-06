@@ -50,9 +50,13 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 ## 博客部分内容截图
 (12月6日晚间上传)
 手机端：
+![https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/small1.jpg?raw=true]
+https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/small2.jpg?raw=true
+https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/small3.jpg?raw=true
+https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/small4.jpg?raw=true
 ipad:
 PC:
-![](/src/assets/1.png)
+
 
 ## 博客部署位置
 www.test.solerji.top
