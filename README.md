@@ -53,6 +53,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## 博客部署位置
 www.test.solerji.top
+(暂时无法访问数据，12月6日晚间修复）
 
 ## 相关技术及用到的库和插件
 前端部分：
