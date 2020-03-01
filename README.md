@@ -80,9 +80,9 @@ markdown编辑器：mavon-editor、
 
 后台部分：
 核心框架：node.js、
-express、
+express、egg
 数据库：mysql、
-日志管理：log4j.js、
+日志管理：egg-scripts、
 代理： nginx
 
 
