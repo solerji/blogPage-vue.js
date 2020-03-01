@@ -21,7 +21,8 @@ npm run build --report
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 ## 内容说明
-本项目为个人博客的前端页面部分，开发模块分为管理平台和博客展示页面两部分。该项目涉及的后台部分代码在,https://github.com/solerji/solerji-blog-nodejs 开发ing，开发进度可查看Update log。
+本项目为个人博客的前端页面部分，开发模块分为管理平台和博客展示页面两部分。该项目涉及的旧版本（使用express框架）后台部分代码在,https://github.com/solerji/Blog-express.js （已废止），新版本后台代码地址为，https://github.com/solerji/Blog-egg.js
+开发进度可查看Update log。
 
 功能点：
 
@@ -48,8 +49,23 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 支持文章内容查看
 
 ## 博客部分内容截图
-(12月6日晚间上传)
 手机端：
+![Image text](https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/small1.jpg?raw=true)
+![Image text](https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/small2.jpg?raw=true)
+![Image text](https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/small3.jpg?raw=true)
+![Image text](https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/small4.jpg?raw=true)
+ipad:
+![Image text](https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/QQ20191206-2.png?raw=true)
+![Image text](https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/4.png?raw=true)
+![Image text](https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/5.png?raw=true)
+PC:
+![Image text](https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/big1.png?raw=true)
+![Image text](https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/big2.png?raw=true)
+![Image text](https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/big3.png?raw=true)
+![Image text](https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/big4.png?raw=true)
+![Image text](https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/big6.png?raw=true)
+![Image text](https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/big7.png?raw=true)
+
 
 ## 博客部署位置
 www.test.solerji.top
@@ -90,3 +106,5 @@ express、
 2019-10-01--2019-11-01 change system model and fix bug
 
 2019-11-26 Deployment system on the first time
+
+2020-02-28 change new frame
