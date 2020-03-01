@@ -71,6 +71,7 @@ export default {
           }
         })
         .then(function(response) {
+          localStorage.setItem('token',"Bearer " + response.data.data)
           vue.$router.push('/index')
         })
         .catch(function(error) {

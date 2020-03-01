@@ -11,6 +11,7 @@
           :xs="{ span: 5, offset: 18 }"
         >
           <Button @click="addArticle()" ghost isAdd="true" type="info">新增文档</Button>
+          <Button @click="exit()" ghost isAdd="true" type="info">退出登录</Button>
         </Col>
       </Row>
     </div>
@@ -151,6 +152,11 @@ export default {
         params: { aid: aid, isEdit: vue.isEdit, isAdd: vue.isAdd }
       })
     },
+    exit () {
+      let vue = this
+      localStorage.removeItem('token')
+      vue.$router.push('/login')
+    },
     remove(index) {
       let vue = this
       vue.modal = true
@@ -160,7 +166,10 @@ export default {
       vue
         .$http({
           method: 'get',
-          url: '/api/articles'
+          url: '/api/articles',
+          // headers:{
+          //  'Authorization':`Bearer ${token}`
+          // }
         })
         .then(function(response) {
           if (response.data.code == 0) {

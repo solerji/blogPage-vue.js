@@ -99,8 +99,8 @@ export default {
         })
     },
     getTagsAndTimeline: function(item) {
-      console.log(item)
       let vue = this
+      vue.itemName = item
       vue
         .$http({
           method: 'post',
