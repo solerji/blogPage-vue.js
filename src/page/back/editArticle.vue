@@ -184,7 +184,6 @@ export default {
           }
         })
         .then(function(response) {
-          console.log(response.data.code)
           if (response.data.code == 0) {
             vue.$Message.success('更新成功')
             vue.$router.push('/index')
