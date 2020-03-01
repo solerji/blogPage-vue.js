@@ -68,7 +68,7 @@ PC:
 
 
 ## 博客部署位置
-www.test.solerji.top
+https://test.solerji.top
 
 ## 相关技术及用到的库和插件
 前端部分：
