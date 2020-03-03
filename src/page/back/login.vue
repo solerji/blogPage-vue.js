@@ -3,7 +3,7 @@
   <div class="loginIn">
     <div class="loginMain">
       <Row>
-        <Col :push="9">
+        <i-col :xs="{ push:6 }" :sm="{ push:7 }" :md="{ push:8 }" :lg="{ push:9 }" >
           <div class="title">博客后台登录</div>
           <div class="loginForm">
             <Form
@@ -29,7 +29,7 @@
               </FormItem>
             </Form>
           </div>
-        </Col>
+        </i-col>
       </Row>
     </div>
   </div>
@@ -84,21 +84,20 @@ export default {
 <style lang="stylus"  scoped>
 .loginIn
   background: url('~@/assets/images/background.png')
-  background-size: cover
+  background-size: contain
   background-repeat: no-repeat
   background-position: center
-  width: 100%
-  height: 100%
-  min-height: 100vh
-  min-width: 100vh
+  height: 90vh
+  width: 100vw
 
 .loginMain
   z-index: 100
-  padding-top: 20%
+  align: center
 
 .title
   position: relative
   font-size: 18px
+  padding-top : 25vh;
   margin-bottom: 2%
   font-weight: 900
 

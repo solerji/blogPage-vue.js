@@ -5,19 +5,28 @@
       <div class="contentTitle">{{ name }}</div>
       <div class="otherMessage">
         <Row :gutter="11" align="middle" justify="center" type="flex">
-          <Col>
+          <i-col :lg="{ span: 6, offset: 2 }"
+                    :md="{ span: 4, offset: 2 }"
+                    :sm="{ span: 4, offset: 2 }"
+                    :xs="{ span: 22, push: 1}">
             <span class="author">
               <Tag color="cyan" type="border">{{ author }}</Tag>
             </span>
-          </Col>
-          <Col>
+          </i-col>
+          <i-col :lg="{ span: 6, offset: 2 }"
+                    :md="{ span: 4, offset: 2 }"
+                    :sm="{ span: 4, offset: 2 }"
+                    :xs="{ span: 22, push: 1}">
             <span class="time">{{ updateTime }}</span>
-          </Col>
-          <Col>
+          </i-col>
+          <i-col :lg="{ span: 6, offset: 2 }"
+                    :md="{ span: 4, offset: 2 }"
+                    :sm="{ span: 4, offset: 2 }"
+                    :xs="{ span: 22, push: 1}">
             <span class="tags">
               <Tag :key="item.tag_name" color="cyan" v-for="item in tags">{{ item.tag_name }}</Tag>
             </span>
-          </Col>
+          </i-col>
         </Row>
       </div>
       <Divider class="headDivider" orientation="left">正文部分</Divider>
@@ -35,20 +44,20 @@
         <!-- 留言功能待开放 -->
         <!-- <div class="comment"></div> -->
         <!-- 上传图片作为打赏工具 -->
-        <Col>
+        <i-col>
           <div class="word">如果您喜欢，就请作者喝杯奶茶吧！</div>
-        </Col>
-        <Col>
+        </i-col>
+        <i-col>
           <div class="milktea">
             <Icon size="28" type="ios-cafe" />
           </div>
-        </Col>
-        <Col>
+        </i-col>
+        <i-col>
           <div class="begMoney">
             <img height="100px" src="../../assets/images/wechat.jpg" width="100px" />
             <img height="100px" src="../../assets/images/alipay.jpg" width="100px" />
           </div>
-        </Col>
+        </i-col>
       </Row>
       <Row align="middle" justify="center" type="flex">
         <div class="noteWrapper">

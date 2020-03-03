@@ -37,7 +37,7 @@ export default {
   props: {
     searchList: Array
   },
-  // 最多显示250字
+  // 最多显示100字
   filters: {
     ellipsis(value) {
       if (!value) return ''
