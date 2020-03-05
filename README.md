@@ -48,25 +48,6 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 支持文章内容查看
 
-## 博客部分内容截图
-手机端：
-![Image text](https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/small1.jpg?raw=true)
-![Image text](https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/small2.jpg?raw=true)
-![Image text](https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/small3.jpg?raw=true)
-![Image text](https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/small4.jpg?raw=true)
-ipad:
-![Image text](https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/QQ20191206-2.png?raw=true)
-![Image text](https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/4.png?raw=true)
-![Image text](https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/5.png?raw=true)
-PC:
-![Image text](https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/big1.png?raw=true)
-![Image text](https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/big2.png?raw=true)
-![Image text](https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/big3.png?raw=true)
-![Image text](https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/big4.png?raw=true)
-![Image text](https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/big6.png?raw=true)
-![Image text](https://github.com/solerji/blogPage-vue.js/blob/master/src/assets/images/big7.png?raw=true)
-
-
 ## 博客部署位置
 https://test.solerji.top
 
